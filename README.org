@@ -1,38 +1,39 @@
-#+title: World Bank API: Python Dash Board
+#+title: World Bank API Python DashBoard
 #+author: Mir Behroz Noor
 
 *[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of all data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. For me, possible Viz DashBoards were either in R and Python, both supports interactive Plotly. However, I found Python version easier to implement.*
 
-*** Dash App Versions
-----
-**** [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png][SimpleApp]]
+*** _Dash App Versions_
+**** _Simple App_
+https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png
 It is one variable app where user can only change y-axis variable. It accepts only one variable while it is possible to add as many economies as possible.
-**** [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png][MultiApp]]
+**** _Multi App_
+[[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
 The Multi App is similar with respect to number of countries. The user can change the x-axis and y-axis variables. In Multi App, the user can look for multi-variable trends for a country otherwise, multi and simple Apps are almost the same.
-***** Limitation
+***** _Limitation_
 The Multi App will not work if 2 or more than two economies and both indicators are selected. The problem occurs because Plotly does not support Pandas multi-index Dataframe.
 + *Better, either to select one economy with multiple indicators or one indicator with multiple economies.*
 
-****  Possibility to Switch
+**** _Possibility to Switch_
 It is possible to switch from Simple to Multi App or vice versa.
-***** Limitation
+***** _Limitation_
 If App was switched, the options will reset to default. The default settings can be changed from within scripts.
-*** Create a Conda Environment
+*** _Create a Conda Environment_
 #+begin_src shell
   bash build_env.sh
 #+end_src
 
-*** Run Python App
+*** _Run Python App_
 Simply the run the =app.py= script.
-***** Manually
+**** _Manually_
 #+begin_src bash
   cd ~/path/to/World-Bank-API-Python-DashBoard
   conda activate wbconda
   python app.py
 #+end_src
 The App will open in the default browser after few seconds.
-***** Automate
-****** Write Bash Alias function
+**** _Automate_
+***** _Write Bash Alias function_
 Find or create =.bash_aliases= in folder =$HOME= Directory. Insert the function snippet:
 #+begin_src bash
   wbapp() {
@@ -53,10 +54,10 @@ Afterwards in Terminal, simply run:
 
 
 *** Acknowledgment
-+ [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Extract key from python dictionary]]
-+ [[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Data Visualization Interfaces Python Dash]]
-+ [[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][Introducing wbgapi New Python Package Accessing World Bank Data]]
-+ [[https://github.com/tgherzog/wbgapi][Github: wbgapi]]
-+ [[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
-+ [[https://plotly.com/python/legend/][Plotly: Legend]]
-+ [[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
+- [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Extract key from python dictionary]]
+- [[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Data Visualization Interfaces Python Dash]]
+- [[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][Introducing wbgapi New Python Package Accessing World Bank Data]]
+- [[https://github.com/tgherzog/wbgapi][Github: wbgapi]]
+- [[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
+- [[https://plotly.com/python/legend/][Plotly: Legend]]
+- [[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
