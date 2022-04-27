@@ -57,10 +57,17 @@ Afterwards in Terminal, simply run:
 
 
 ** Acknowledgment
-- [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Extract key from python dictionary]]
-- [[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Data Visualization Interfaces Python Dash]]
-- [[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][Introducing wbgapi New Python Package Accessing World Bank Data]]
-- [[https://github.com/tgherzog/wbgapi][Github: wbgapi]]
-- [[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
-- [[https://plotly.com/python/legend/][Plotly: Legend]]
-- [[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
+
+[[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Towardsdatascience: Extract key from python dictionary]]
+
+[[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Logrocket Blog: Data Visualization Interfaces Python Dash]]
+
+[[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][World Bank Blogs: Introducing wbgapi New Python Package Accessing World Bank Data]]
+
+[[https://github.com/tgherzog/wbgapi][Github: wbgapi]]
+
+[[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
+
+[[https://plotly.com/python/legend/][Plotly: Legend]]
+
+[[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
