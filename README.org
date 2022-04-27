@@ -3,18 +3,18 @@
 
 *[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of all data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. There is World Bank package for R too. Either in R and Python, both of them supports interactive Plotly. I found easier it to implement in Python. I hope someone else finds it helpful too*
 
-*** Default Database
+** Default Database
 World Bank API is set to World Development Indicators (WDI) Database (db=2) by the module developers.
 #+begin_src python
 import wbgapi as wb
 wb.source.info()
 #+end_src
 In case, of different database request, it can be changed through two ways.
-**** Globally at top of script
+*** Globally at top of script
 #+begin_src python
   wb.db = 2
 #+end_src
-**** Locally for each Dataset request
+*** Locally for each Dataset request
 #+begin_src python
 data = wb.data.DataFrame(
     d_indicator,
@@ -38,7 +38,7 @@ The Multi App will not work if 2 or more than two economies and both indicators 
 
 [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
 
-** Possibility to Switch between Apps
+** Possibility to Switch
 It is possible to switch from Simple to Multi App or vice versa.
 ***** Limitation
 If App was switched, the options will reset to default. The default settings can be changed from within scripts.
