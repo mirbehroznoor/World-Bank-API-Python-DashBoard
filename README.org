@@ -1,39 +1,43 @@
 #+title: World Bank API Python DashBoard
 #+author: Mir Behroz Noor
 
-*[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of all data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. For me, possible Viz DashBoards were either in R and Python, both supports interactive Plotly. However, I found Python version easier to implement.*
+*[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of all data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. There is World Bank package for R too. Either in R and Python, both of them supports interactive Plotly. However, I found easier it to implement in Python.*
 
-*** _Dash App Versions_
-**** _Simple App_
-https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png
+** Dash App Versions
+*** Simple App
 It is one variable app where user can only change y-axis variable. It accepts only one variable while it is possible to add as many economies as possible.
-**** _Multi App_
-[[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
-The Multi App is similar with respect to number of countries. The user can change the x-axis and y-axis variables. In Multi App, the user can look for multi-variable trends for a country otherwise, multi and simple Apps are almost the same.
-***** _Limitation_
-The Multi App will not work if 2 or more than two economies and both indicators are selected. The problem occurs because Plotly does not support Pandas multi-index Dataframe.
-+ *Better, either to select one economy with multiple indicators or one indicator with multiple economies.*
+https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png
 
-**** _Possibility to Switch_
+*** Multi App
+The Multi App is similar with respect to number of countries. The user can change the x-axis and y-axis variables. The user can look for multi-variable trends for a country, otherwise multi and simple Apps are almost the same.
+[[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
+
+***** Limitation
+
+The Multi App will not work if 2 or more than two economies and both indicators are selected simultaneously. The problem occurs because Plotly does not support Pandas multi-index Dataframe.
++ *Note:
+  Either select one economy with multiple indicators or one indicator with multiple economies.*
+
+** Possibility to Switch between Apps
 It is possible to switch from Simple to Multi App or vice versa.
-***** _Limitation_
+***** Limitation
 If App was switched, the options will reset to default. The default settings can be changed from within scripts.
-*** _Create a Conda Environment_
+** Create a Conda Environment
 #+begin_src shell
   bash build_env.sh
 #+end_src
 
-*** _Run Python App_
-Simply the run the =app.py= script.
-**** _Manually_
+** Run Python App
+Simply run the =app.py= script. The App will open in the default browser after few seconds.
+*** Manually
 #+begin_src bash
   cd ~/path/to/World-Bank-API-Python-DashBoard
   conda activate wbconda
   python app.py
 #+end_src
-The App will open in the default browser after few seconds.
-**** _Automate_
-***** _Write Bash Alias function_
+
+*** Automate
+**** Write Bash Alias function
 Find or create =.bash_aliases= in folder =$HOME= Directory. Insert the function snippet:
 #+begin_src bash
   wbapp() {
