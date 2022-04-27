@@ -1,41 +1,39 @@
-#+title: World Bank Data Python DashBoard
+#+title: World Bank API: Python Dash Board
 #+author: Mir Behroz Noor
 
-*[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] stopped showing data points before year 2000, as in visualizations. So the project aims at providing the visualizations of data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. After browsing for Viz DashBoards, for me options were: R and Python, both supports interactive Plotly. I find Python version easier to implement.*
-
-* World Bank Data DashBoard
+*[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of all data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. For me, possible Viz DashBoards were either in R and Python, both supports interactive Plotly. However, I found Python version easier to implement.*
 
 *** Dash App Versions
-**** SimpleApp
-
+----
+**** [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png][SimpleApp]]
 It is one variable app where user can only change y-axis variable. It accepts only one variable while it is possible to add as many economies as possible.
-
-**** MultiApp
-
+**** [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png][MultiApp]]
 The Multi App is similar with respect to number of countries. The user can change the x-axis and y-axis variables. In Multi App, the user can look for multi-variable trends for a country otherwise, multi and simple Apps are almost the same.
-***** Limitations:
+***** Limitation
 The Multi App will not work if 2 or more than two economies and both indicators are selected. The problem occurs because Plotly does not support Pandas multi-index Dataframe.
-+ Better, either to select one economy with multiple indicators or one indicator with multiple economies.
-*** Create Conda Environment from 'build.sh' file
-#+begin_src shell
-  bash build.sh
-#+end_src
-*** Possibility to Switch:
++ *Better, either to select one economy with multiple indicators or one indicator with multiple economies.*
+
+****  Possibility to Switch
 It is possible to switch from Simple to Multi App or vice versa.
-***** Limitation:
+***** Limitation
 If App was switched, the options will reset to default. The default settings can be changed from within scripts.
-** Run app.py
-Simply the run the `app.py` script.
-*** Manually
+*** Create a Conda Environment
+#+begin_src shell
+  bash build_env.sh
+#+end_src
+
+*** Run Python App
+Simply the run the =app.py= script.
+***** Manually
 #+begin_src bash
   cd ~/path/to/World-Bank-API-Python-DashBoard
   conda activate wbconda
   python app.py
 #+end_src
 The App will open in the default browser after few seconds.
-*** Automate
-**** Writ Bash Alias function:
-Find or create =.bash_aliases= in folder $HOME Directory. Insert the function snippet:
+***** Automate
+****** Write Bash Alias function
+Find or create =.bash_aliases= in folder =$HOME= Directory. Insert the function snippet:
 #+begin_src bash
   wbapp() {
       cd ~/path/to/World-Bank-API-Python-DashBoard
@@ -44,21 +42,21 @@ Find or create =.bash_aliases= in folder $HOME Directory. Insert the function sn
       conda deactivate wbconda
   }
 #+end_src
-To shell re-read the =.bash_aliases= file, run the following command:
+For shell to re-read the =.bash_aliases= file, run the following command:
 #+begin_src bash
   source .bashrc
 #+end_src
-Afterwards, run your function in bash like below:
+Afterwards in Terminal, simply run:
 #+begin_src bash
   wbapp
 #+end_src
 
 
-* Acknowledgment:
-[[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Extract key from python dictionary]]
-[[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Data Visualization Interfaces Python Dash]]
-[[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][Introducing wbgapi New Python Package Accessing World Bank Data]]
-[[https://github.com/tgherzog/wbgapi][Github: wbgapi]]
-[[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
-[[https://plotly.com/python/legend/][Plotly: Legend]]
-[[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
+*** Acknowledgment
++ [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Extract key from python dictionary]]
++ [[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Data Visualization Interfaces Python Dash]]
++ [[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][Introducing wbgapi New Python Package Accessing World Bank Data]]
++ [[https://github.com/tgherzog/wbgapi][Github: wbgapi]]
++ [[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
++ [[https://plotly.com/python/legend/][Plotly: Legend]]
++ [[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
