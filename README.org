@@ -3,19 +3,18 @@
 
 *[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of all data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. There is World Bank package for R too. Either in R and Python, both of them supports interactive Plotly. I found easier it to implement in Python. I hope someone else finds it helpful too*
 
-** Dash App Versions
 *** Default Database
 World Bank API is set to World Development Indicators (WDI) Database (db=2) by the module developers.
 #+begin_src python
 import wbgapi as wb
 wb.source.info()
 #+end_src
-In case, of different database request, it can be change through two ways. To change globally,
+In case, of different database request, it can be changed through two ways.
+**** Globally at top of script
 #+begin_src python
   wb.db = 2
 #+end_src
-*<OR>*
-To change within each data request,
+**** Locally for each Dataset request
 #+begin_src python
 data = wb.data.DataFrame(
     d_indicator,
@@ -25,6 +24,7 @@ data = wb.data.DataFrame(
     db=2)
 #+end_src
 
+** Dash App Versions
 *** Simple App
 It is one variable app where user can only change y-axis variable. It accepts only one variable while it is possible to add as many economies as possible.
 
@@ -78,11 +78,10 @@ Afterwards in Terminal, simply run:
 
 
 ** Acknowledgment
-
-[[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Towardsdatascience: Extract key from python dictionary]]
-[[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Logrocket Blog: Data Visualization Interfaces Python Dash]]
-[[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][World Bank Blogs: Introducing wbgapi New Python Package Accessing World Bank Data]]
-[[https://github.com/tgherzog/wbgapi][Github: wbgapi]]
-[[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
-[[https://plotly.com/python/legend/][Plotly: Legend]]
-[[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
+- [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Towardsdatascience: Extract key from python dictionary]]
+- [[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Logrocket Blog: Data Visualization Interfaces Python Dash]]
+- [[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][World Bank Blogs: Introducing wbgapi New Python Package Accessing World Bank Data]]
+- [[https://github.com/tgherzog/wbgapi][Github: wbgapi]]
+- [[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
+- [[https://plotly.com/python/legend/][Plotly: Legend]]
+- [[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
