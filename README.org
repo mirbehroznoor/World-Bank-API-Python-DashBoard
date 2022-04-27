@@ -6,10 +6,11 @@
 ** Dash App Versions
 *** Simple App
 It is one variable app where user can only change y-axis variable. It accepts only one variable while it is possible to add as many economies as possible.
-
+https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png
 
 *** Multi App
 *Note: Either select one economy with multiple indicators or one indicator with multiple economies.*
+https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png
 
 The Multi App is similar with respect to number of countries. The user can change the x-axis and y-axis variables. The user can look for multi-variable trends for a country, otherwise multi and simple Apps are almost the same.
 ***** Limitation
