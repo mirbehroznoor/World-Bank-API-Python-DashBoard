@@ -5,6 +5,7 @@ import pandas as pd
 import wbgapi as wb
 import plotly.express as px
 
+# wb.db = 2
 indicators = pd.DataFrame(wb.series.info().items)
 economies = pd.DataFrame(wb.economy.info().items)
 years = pd.DataFrame(wb.time.info().items)
