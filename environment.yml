@@ -1,0 +1,11 @@
+name: wbconda # Conda Environment
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - dash
+  - wbgapi
+  - plotly
+  - pandas>=1.0
+  - pip
+  - black
