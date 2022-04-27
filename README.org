@@ -1,22 +1,22 @@
 #+title: World Bank API Python DashBoard
 #+author: Mir Behroz Noor
 
-*[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of all data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. There is World Bank package for R too. Either in R and Python, both of them supports interactive Plotly. However, I found easier it to implement in Python.*
+*[[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of all data available from [[https://github.com/tgherzog/wbgapi][World Bank Python API]]. There is World Bank package for R too. Either in R and Python, both of them supports interactive Plotly. I found easier it to implement in Python.*
 
 ** Dash App Versions
 *** Simple App
 It is one variable app where user can only change y-axis variable. It accepts only one variable while it is possible to add as many economies as possible.
+
 https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png
 
 *** Multi App
+*Note: Either select one economy with multiple indicators or one indicator with multiple economies.*
+
 The Multi App is similar with respect to number of countries. The user can change the x-axis and y-axis variables. The user can look for multi-variable trends for a country, otherwise multi and simple Apps are almost the same.
-[[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
-
 ***** Limitation
-
 The Multi App will not work if 2 or more than two economies and both indicators are selected simultaneously. The problem occurs because Plotly does not support Pandas multi-index Dataframe.
-+ *Note:
-  Either select one economy with multiple indicators or one indicator with multiple economies.*
+
+[[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
 
 ** Possibility to Switch between Apps
 It is possible to switch from Simple to Multi App or vice versa.
@@ -57,7 +57,7 @@ Afterwards in Terminal, simply run:
 #+end_src
 
 
-*** Acknowledgment
+** Acknowledgment
 - [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Extract key from python dictionary]]
 - [[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Data Visualization Interfaces Python Dash]]
 - [[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][Introducing wbgapi New Python Package Accessing World Bank Data]]
