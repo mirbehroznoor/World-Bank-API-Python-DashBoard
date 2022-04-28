@@ -5,7 +5,7 @@
 
 ** Dash App Versions
 *** Simple App
-It is one variable app where user can only change y-axis variable. It accepts only one variable while it is possible to add as many economies as possible.
+It is one variable app where user can only change y-axis variable while x-axis is by default, year variable. It accepts only one variable while it is possible to add as many economies as possible.
 
 [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png]]
 
@@ -43,7 +43,6 @@ Find or create =.bash_aliases= in folder =$HOME= Directory. Insert the function 
       cd ~/path/to/World-Bank-API-Python-DashBoard
       conda activate wbconda
       python app.py
-      conda deactivate wbconda
   }
 #+end_src
 For shell to re-read the =.bash_aliases= file, run the following command:

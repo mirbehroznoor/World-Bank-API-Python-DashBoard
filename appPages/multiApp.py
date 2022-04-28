@@ -8,8 +8,12 @@ import plotly.express as px
 # wb.db = 2
 indicators = pd.DataFrame(wb.series.info().items)
 economies = pd.DataFrame(wb.economy.info().items)
+
 years = pd.DataFrame(wb.time.info().items)
 years["value"] = years["value"].astype("int")
+min_year = years["value"].min()
+max_year = years["value"].max()
+
 econ_dic = dict(economies.set_index("value")["id"])
 ind_dic = dict(indicators.set_index("value")["id"])
 
@@ -101,29 +105,26 @@ layout = html.Div([
             id="plot-choice-7",
             options=['Line', 'Scatter'],
             labelStyle={
-                'width': '15%',
-                'float': 'right',
-                # "display": "inline-block",
-                # "marginTop": "0px",
-                'padding': '0px 0px 0px 0px',
+                "display": "inline-block",
+                "marginTop": "0px",
             },
         ),
-    ]),
+    ], style={'width': '12%', 'float': 'right', 'display': 'inline-block'}),
     html.Div([
         dcc.RangeSlider(
             id="year-slider-7",
-            min=years["value"].min(),
-            max=years["value"].max(),
+            min=min_year,
+            max=max_year,
             step=1,
             tooltip={"placement": "right", "always_visible": True},
             marks=None,
             dots=False,
             # marks={year: str(year)[2:4] for year in years["value"]},
             # value=years["value"].max(),
-            value=[1960, 2023])
+            value=[min_year, max_year])
     ],
         style={
-        "width": "50%",
+        "width": "80%",
             'float': 'left',
             "display": "inline-block",
         "padding": "2px 0px 0px 0px",

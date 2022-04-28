@@ -8,8 +8,12 @@ import plotly.express as px
 # wb.db = 2
 indicators = pd.DataFrame(wb.series.info().items)
 economies = pd.DataFrame(wb.economy.info().items)
+
 years = pd.DataFrame(wb.time.info().items)
 years["value"] = years["value"].astype("int")
+min_year = years["value"].min()
+max_year = years["value"].max()
+
 econ_dic = dict(economies.set_index("value")['id'])
 ind_dic = dict(indicators.set_index("value")["id"])
 
@@ -79,19 +83,30 @@ layout = html.Div([
     ),
     html.Br(),
     html.Div([
+        dcc.RadioItems(
+            id="y-axis-type-2",
+            options=["Linear", "Log"],
+            value="Linear",
+            labelStyle={
+               "display": "inline-block",
+               "marginTop": "0px",
+            },
+        ),
+    ], style={'width': '12%', 'float': 'right', 'display': 'inline-block'}),
+    html.Div([
         dcc.RangeSlider(
             id="year-slider-2",
-            min=years["value"].min(),
-            max=years["value"].max(),
+            min=min_year,
+            max=max_year,
             step=1,
             tooltip={"placement": "right", "always_visible": True},
             marks=None,
             dots=False,
             # marks={year: str(year)[2:4] for year in years["value"]},
             # value=years["value"].max(),
-            value=[1960, 2023]),
+            value=[min_year, max_year]),
     ],  style={
-        'width': '100%',
+        'width': '80%',
         'display': 'inline-block',
         # 'padding': '5px 0px 0px 0px',
         'font-size': '50%'
@@ -108,8 +123,9 @@ layout = html.Div([
     Input('year-slider-2', 'value'),
     Input('d-economies-2', 'value'),
     Input('d-indicators-2', 'value'),
+    Input('y-axis-type-2', 'value'),
 )
-def update_graph(year, d_economies, d_indicator):
+def update_graph(year, d_economies, d_indicator, y_axis_type):
     data = extract_data(year, d_economies, d_indicator)
     y_axis_title = return_key(ind_dic, d_indicator)
     fig = px.scatter(
@@ -122,7 +138,8 @@ def update_graph(year, d_economies, d_indicator):
     fig.update_traces(mode='lines+markers')
     fig.update_xaxes(showgrid=False)
     fig.update_yaxes(
-        title=f'{y_axis_title} ::\t{d_indicator}', type='linear')
+        title=f'{y_axis_title} ::\t{d_indicator}',
+        type='linear' if y_axis_type == 'Linear' else 'log')
     fig.update_layout(height=530,
                       margin={
                           'l': 20,
