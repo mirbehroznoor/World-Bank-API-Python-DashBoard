@@ -3,6 +3,7 @@ from dash import dcc, html, callback
 from dash.dependencies import Output, Input
 import plotly.express as px
 import wbgapi as wb
+
 from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
 from appPages.appSupport import return_key, extract_data
 from appPages.appSupport import first_var, country_var
