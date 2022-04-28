@@ -89,10 +89,10 @@ layout = html.Div([
             value="Linear",
             labelStyle={
                "display": "inline-block",
-               "marginTop": "0px",
+               # "marginTop": "0px",
             },
         ),
-    ], style={'width': '12%', 'float': 'right', 'display': 'inline-block'}),
+    ], style={'width': '15%', 'float': 'right', 'display': 'inline-block'}),
     html.Div([
         dcc.RangeSlider(
             id="year-slider-2",
@@ -108,7 +108,7 @@ layout = html.Div([
     ],  style={
         'width': '80%',
         'display': 'inline-block',
-        # 'padding': '5px 0px 0px 0px',
+        'padding': '5px 0px 0px 0px',
         'font-size': '50%'
     }
     ),
