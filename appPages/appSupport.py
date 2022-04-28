@@ -2,7 +2,7 @@ import pandas as pd
 import wbgapi as wb
 
 # wb.db = 1
-database = pd.DataFrame(wb.source.info().items)
+
 indicators = pd.DataFrame(wb.series.info().items)
 economies = pd.DataFrame(wb.economy.info().items)
 
@@ -13,7 +13,9 @@ max_year = years["value"].max()
 
 econ_dic = dict(economies.set_index("value")['id'])
 ind_dic = dict(indicators.set_index("value")["id"])
-db_dic = dict(database.set_index("name")['id'])
+
+# database = pd.DataFrame(wb.source.info().items)
+# db_dic = dict(database.set_index("name")['id'])
 
 if wb.db == 2:
     first_var = "NY.GDP.PCAP.CD"
