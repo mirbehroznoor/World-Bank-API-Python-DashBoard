@@ -6,6 +6,7 @@ import wbgapi as wb
 
 from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
 from appPages.appSupport import return_key, extract_data
+from appPages.appSupport import first_var, second_var, country_var
 
 layout = html.Div([
     html.Div([
@@ -14,7 +15,7 @@ layout = html.Div([
             options=[
                 {"label": key,
                  "value": value} for key, value in ind_dic.items()],
-            value="NY.GDP.PCAP.CD",
+            value=first_var,
             multi=False),
         dcc.RadioItems(
             id="y-axis-type-7",
@@ -33,7 +34,7 @@ layout = html.Div([
                 {"label": key,
                  "value": value} for key, value in ind_dic.items()
             ],
-            value="AG.LND.AGRI.ZS",
+            value=second_var,
             multi=False),
         dcc.RadioItems(
             id="x-axis-type-7",
@@ -55,7 +56,7 @@ layout = html.Div([
             options=[
                 {"label": key, "value": value}
                 for key, value in econ_dic.items()],
-            value="KOR",
+            value=country_var,
             clearable=False,
             multi=True)
     ],
@@ -82,12 +83,16 @@ layout = html.Div([
             value="Scatter",
             id="plot-choice-7",
             options=['Scatter', 'Line'],
-            labelStyle={
-                "display": "inline-block",
-                "marginTop": "0px",
-            },
+            # labelStyle={
+            # "display": "inline-block",
+            # "marginTop": "0px",
+            # },
         ),
-    ], style={'width': '15%', 'float': 'right', 'display': 'inline-block'}),
+    ], style={
+        'width': '17%',
+        'float': 'right',
+        'display': 'inline-block'
+    }),
     html.Div([
         dcc.RangeSlider(
             id="year-slider-7",
@@ -102,11 +107,12 @@ layout = html.Div([
             value=[min_year, max_year])
     ],
         style={
-        "width": "80%",
-            'float': 'left',
-            "display": "inline-block",
-        "padding": "2px 0px 0px 0px",
-        "font-size": "50%"}
+        "width": "70%",
+        'float': 'left',
+        "display": "inline-block",
+        # "padding": "2px 0px 0px 0px",
+        "font-size": "50%"
+    }
     ),
     html.Br(),
     html.Div([

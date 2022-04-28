@@ -1,7 +1,8 @@
 import pandas as pd
 import wbgapi as wb
 
-# wb.db = 2
+# wb.db = 1
+database = pd.DataFrame(wb.source.info().items)
 indicators = pd.DataFrame(wb.series.info().items)
 economies = pd.DataFrame(wb.economy.info().items)
 
@@ -12,6 +13,16 @@ max_year = years["value"].max()
 
 econ_dic = dict(economies.set_index("value")['id'])
 ind_dic = dict(indicators.set_index("value")["id"])
+db_dic = dict(database.set_index("name")['id'])
+
+if wb.db == 2:
+    first_var = "NY.GDP.PCAP.CD"
+    second_var = "AG.LND.AGRI.ZS"
+    country_var = "KOR"
+else:
+    first_var = indicators["id"][0]
+    second_var = indicators["id"][1]
+    country_var = "KOR"
 
 
 def return_key(dic, val):
@@ -24,7 +35,9 @@ def return_key(dic, val):
 def extract_data(wb, year, d_economies, d_indicator):
     data = (
         wb.data.DataFrame(d_indicator, d_economies,
-                          numericTimeKeys=True, labels=True)
+                          numericTimeKeys=True,
+                          labels=True
+                          )
         .iloc[:, 3:]
         .transpose()
     )

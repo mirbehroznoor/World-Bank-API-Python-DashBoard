@@ -5,6 +5,7 @@ import plotly.express as px
 import wbgapi as wb
 from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
 from appPages.appSupport import return_key, extract_data
+from appPages.appSupport import first_var, country_var
 
 layout = html.Div([
     html.Div([
@@ -22,7 +23,7 @@ layout = html.Div([
             id='d-indicators-2',
             options=[{"label": key, "value": value}
                      for key, value in ind_dic.items()],
-            value="NY.GDP.PCAP.CD",
+            value=first_var,
             multi=False)
     ],
         style={
@@ -35,7 +36,7 @@ layout = html.Div([
             id='d-economies-2',
             options=[{"label": key, "value": value}
                      for key, value in econ_dic.items()],
-            value="KOR",
+            value=country_var,
             clearable=False,
             multi=True)
     ],
@@ -101,7 +102,7 @@ def update_graph(year, d_economies, d_indicator, y_axis_type):
     fig.update_traces(mode='lines+markers')
     fig.update_xaxes(showgrid=False)
     fig.update_yaxes(
-        title=f'{y_axis_title} ::\t{d_indicator}',
+        title=f'{y_axis_title} :: {d_indicator}',
         type='linear' if y_axis_type == 'Linear' else 'log')
     fig.update_layout(height=530,
                       margin={

@@ -1,19 +1,19 @@
 #+title: World Bank API Python DashBoard
 #+author: Mir Behroz Noor
 
-*Since [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both of them supports interactive Plotly. I found easier it to implement in Python. I hope someone else finds it helpful too*
+*Since [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both of them supports interactive Plotly. I found easier it to implement in Python. I hope someone else finds it helpful too, plus the instructions are for GNU/Linux. Right now, I have no idea about Windows.*
 
 ** Dash App Versions
 *** Simple App
-It is one variable app where user can only change y-axis variable while x-axis is by default, year variable. It accepts only one variable while it is possible to add as many economies as possible.
+It is one variable App where user can only change y-axis variable while x-axis is by set to ~Year~ by default. It accepts only one indicator while it is possible to add as many economies as possible.
 
 [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png]]
 
 *** Multi App
 *Note: Either select one economy with multiple indicators or one indicator with multiple economies.*
-The Multi App is similar with respect to number of countries. The user can change the x-axis and y-axis variables. The user can look for multi-variable trends for a country, otherwise multi and simple Apps are almost the same.
+In Multi App, the User can choose two variables, x-axis and y-axis indicators. The user can look for multi-variable trends for a country, otherwise multi and simple Apps are almost the same.
 ***** Limitation
-The Multi App will not work if 2 or more than two economies and both indicators are selected simultaneously. The problem occurs because Plotly does not support Pandas multi-index Dataframe.
+The Multi App will through an error or won't work, if two or more than two economies and both indicators are selected simultaneously. The problem occurs due Plotly which does not support Pandas multi-index Data frame.
 
 [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
 
@@ -21,7 +21,14 @@ The Multi App will not work if 2 or more than two economies and both indicators 
 It is possible to switch from Simple to Multi App or vice versa.
 ***** Limitation
 If App was switched, the options will reset to default. The default settings can be changed from within scripts.
+
+** Download Github Repository
+#+begin_src bash
+  git clone https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard
+#+end_src
+
 ** Create a Conda Environment
+In =environment.yml=, the conda env is named =wbconda=
 #+begin_src shell
   bash build_env.sh
 #+end_src
@@ -58,23 +65,15 @@ Afterwards in Terminal, simply run:
 ** Default Database
 World Bank API is set to World Development Indicators (WDI) Database (db=2) by the module developers.
 #+begin_src python
-import wbgapi as wb
-wb.source.info()
+  import wbgapi as wb
+  wb.source.info()
 #+end_src
-In case, of different database request, it can be changed through two ways.
-*** Globally at top of script
+In case, of different database request:
+*** Globally at top of =appSupport.py=
 #+begin_src python
   wb.db = 2
 #+end_src
-*** Locally for each Dataset request
-#+begin_src python
-data = wb.data.DataFrame(
-    d_indicator,
-    d_economies,
-    numericTimeKeys=True,
-    labels=True,
-    db=2)
-#+end_src
+
 
 ** Acknowledgment
 - [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Towardsdatascience: Extract key from python dictionary]]
