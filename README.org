@@ -68,8 +68,8 @@ World Bank API is set to World Development Indicators (WDI) Database (db=2) by t
   import wbgapi as wb
   wb.source.info()
 #+end_src
-In case, of different database request:
-*** Globally at top of =appSupport.py=
+*** Globally
+In case, of different database request, at top of =appSupport.py=
 #+begin_src python
   wb.db = 2
 #+end_src
