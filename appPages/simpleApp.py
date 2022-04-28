@@ -1,43 +1,10 @@
 # -*- coding: utf-8 -*-
 from dash import dcc, html, callback
 from dash.dependencies import Output, Input
-import pandas as pd
-import wbgapi as wb
 import plotly.express as px
-
-# wb.db = 2
-indicators = pd.DataFrame(wb.series.info().items)
-economies = pd.DataFrame(wb.economy.info().items)
-
-years = pd.DataFrame(wb.time.info().items)
-years["value"] = years["value"].astype("int")
-min_year = years["value"].min()
-max_year = years["value"].max()
-
-econ_dic = dict(economies.set_index("value")['id'])
-ind_dic = dict(indicators.set_index("value")["id"])
-
-
-def return_key(dic, val):
-    for key, value in dic.items():
-        if value == val:
-            return key
-    return('Key Not Found')
-
-
-def extract_data(year, d_economies, d_indicator):
-    data = (
-        wb.data.DataFrame(d_indicator, d_economies,
-                          numericTimeKeys=True, labels=True)
-        .iloc[:, 3:]
-        .transpose()
-    )
-    data = data.rename_axis(None, axis=1)
-    data = data.reset_index()
-    data = data.rename(columns={"index": "Year"})
-    data = data[(data["Year"] >= year[0]) & (data["Year"] <= year[1])]
-    return data
-
+import wbgapi as wb
+from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
+from appPages.appSupport import return_key, extract_data
 
 layout = html.Div([
     html.Div([
@@ -45,9 +12,8 @@ layout = html.Div([
                   href='/multiApp'),
     ],
         style={
-        'width': '10%',
-        'float': 'right',
-            # "display": "inline-block",
+            'width': '10%',
+            'float': 'right',
             'padding': '5px 0px 0px 0px',
             "font-size": "80%"}
     ),
@@ -60,9 +26,8 @@ layout = html.Div([
             multi=False)
     ],
         style={
-        'width': '89%',
+            'width': '89%',
             'display': 'inline-block',
-            # 'padding': '10px 5px',
             'font-size': '70%'}
     ),
     html.Div([
@@ -75,7 +40,7 @@ layout = html.Div([
             multi=True)
     ],
         style={
-        'width': '100%',
+            'width': '100%',
             'display': 'inline-block',
             'padding': '2px 0px 0px 0px',
             'font-size': '85%'
@@ -89,7 +54,6 @@ layout = html.Div([
             value="Linear",
             labelStyle={
                "display": "inline-block",
-               # "marginTop": "0px",
             },
         ),
     ], style={'width': '15%', 'float': 'right', 'display': 'inline-block'}),
@@ -112,9 +76,9 @@ layout = html.Div([
         'font-size': '50%'
     }
     ),
-    # html.Br(),
-    html.Div([dcc.Graph(id='data-graph-2'),
-              ]),
+    html.Div([
+        dcc.Graph(id='data-graph-2'),
+    ]),
 ])
 
 
@@ -126,13 +90,12 @@ layout = html.Div([
     Input('y-axis-type-2', 'value'),
 )
 def update_graph(year, d_economies, d_indicator, y_axis_type):
-    data = extract_data(year, d_economies, d_indicator)
+    data = extract_data(wb, year, d_economies, d_indicator)
     y_axis_title = return_key(ind_dic, d_indicator)
     fig = px.scatter(
         data,
         x="Year",
         y=d_economies,
-        # log_y=True,
     )
     fig.update_layout(transition_duration=500)
     fig.update_traces(mode='lines+markers')

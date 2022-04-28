@@ -1,43 +1,11 @@
 # -*- coding: utf-8 -*-
 from dash import dcc, html, callback
 from dash.dependencies import Output, Input
-import pandas as pd
-import wbgapi as wb
 import plotly.express as px
+import wbgapi as wb
 
-# wb.db = 2
-indicators = pd.DataFrame(wb.series.info().items)
-economies = pd.DataFrame(wb.economy.info().items)
-
-years = pd.DataFrame(wb.time.info().items)
-years["value"] = years["value"].astype("int")
-min_year = years["value"].min()
-max_year = years["value"].max()
-
-econ_dic = dict(economies.set_index("value")["id"])
-ind_dic = dict(indicators.set_index("value")["id"])
-
-
-def return_key(dic, val):
-    for key, value in dic.items():
-        if value == val:
-            return key
-    return "Key Not Found"
-
-
-def extract_data(year, d_economies, d_indicator):
-    data = (
-        wb.data.DataFrame(d_indicator, d_economies,
-                          numericTimeKeys=True, labels=True)
-        .iloc[:, 3:]
-        .transpose()
-    )
-    # data = data.rename_axis(None, axis=1)
-    data = data.reset_index()
-    data = data.rename(columns={"index": "Year"})
-    data = data[(data["Year"] >= year[0]) & (data["Year"] <= year[1])]
-    return data
-
+from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
+from appPages.appSupport import return_key, extract_data
 
 layout = html.Div([
     html.Div([
@@ -48,24 +16,12 @@ layout = html.Div([
                  "value": value} for key, value in ind_dic.items()],
             value="NY.GDP.PCAP.CD",
             multi=False),
-        # ],
-        #     style={
-        #     "width": "85%",
-        #     "display": "inline-block",
-        #     "padding": "2px 0px 0px 0px",
-        #     "font-size": "70%"}
-        # ),
         dcc.RadioItems(
             id="y-axis-type-7",
             options=["Linear", "Log"],
             value="Linear",
-            # labelStyle={
-               # "display": "inline-block",
-               # "marginTop": "0px",
-            # },
         ),
     ], style={'width': '50%',
-              # "padding": "0px 0px 0px 0px",
               'float': 'right',
               'display': 'inline-block',
               'font-size': "70%"
@@ -79,13 +35,6 @@ layout = html.Div([
             ],
             value="AG.LND.AGRI.ZS",
             multi=False),
-        # ],
-        # style={
-        # 'width': '75%',
-        # 'float': 'left',
-        # "display": "inline-block",
-        # "font-size": "70%"}
-        # ),
         dcc.RadioItems(
             id="x-axis-type-7",
             options=["Linear", "Log"],
@@ -96,7 +45,6 @@ layout = html.Div([
             },
         ),
     ], style={'width': '49%',
-              # 'padding': '0px 0px 0px 0px',
               'float': 'left',
               'display': 'inline-block',
               'font-size': "70%"
@@ -139,7 +87,7 @@ layout = html.Div([
                 "marginTop": "0px",
             },
         ),
-    ], style={'width': '12%', 'float': 'right', 'display': 'inline-block'}),
+    ], style={'width': '15%', 'float': 'right', 'display': 'inline-block'}),
     html.Div([
         dcc.RangeSlider(
             id="year-slider-7",
@@ -193,26 +141,25 @@ def update_data(year, d_economies, y_ind, x_ind, plot_choice,
         x_axis_title = "Year"
         y_axis = d_economies
         y_axis_title = return_key(ind_dic, y_ind)
-        data = extract_data(year, d_economies, y_ind)
+        data = extract_data(wb, year, d_economies, y_ind)
     elif y_ind and x_ind:
         x_axis = x_ind
         x_axis_title = return_key(ind_dic, x_ind)
         y_axis = y_ind
         y_axis_title = return_key(ind_dic, y_ind)
         indicators = [y_ind, x_ind]
-        data = extract_data(year, d_economies, indicators)
+        data = extract_data(wb, year, d_economies, indicators)
     elif x_ind and not y_ind:
         x_axis = "Year"
         y_axis = d_economies
         x_axis_title = "Year"
         y_axis_title = return_key(ind_dic, x_ind)
-        data = extract_data(year, d_economies, x_ind)
+        data = extract_data(wb, year, d_economies, x_ind)
 
     fig = px.scatter(
         data,
         x=x_axis,
         y=y_axis
-        # log_y=True,
     )
     fig.update_layout(transition_duration=500)
     fig.update_traces(mode="markers" if plot_choice ==
