@@ -1,7 +1,7 @@
 #+title: World Bank API Python DashBoard
 #+author: Mir Behroz Noor
 
-*Since [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both of them supports interactive Plotly. I found easier it to implement in Python. I hope someone else finds it helpful too, plus the instructions are for GNU/Linux. Right now, I have no idea about Windows.*
+*Since [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both support interactive Plotly. I found it easier to implement in Python. I hope someone else finds it helpful too. The instructions are for GNU/Linux.*
 
 ** Dash App Versions
 *** Simple App
@@ -75,7 +75,7 @@ In case, of different database request, at top of =appSupport.py=
 #+end_src
 
 
-** Acknowledgment
+** Acknowledgments
 - [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Towardsdatascience: Extract key from python dictionary]]
 - [[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Logrocket Blog: Data Visualization Interfaces Python Dash]]
 - [[https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data][World Bank Blogs: Introducing wbgapi New Python Package Accessing World Bank Data]]
@@ -83,3 +83,4 @@ In case, of different database request, at top of =appSupport.py=
 - [[https://dash.plotly.com/interactive-graphing][Plotly: Interactive Graphing]]
 - [[https://plotly.com/python/legend/][Plotly: Legend]]
 - [[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
+- [[https://stackoverflow.com/questions/62642418/is-there-a-way-to-prevent-a-callback-from-firing-in-dash][Stackoverflow: Prevent a callback from firing in dash]]

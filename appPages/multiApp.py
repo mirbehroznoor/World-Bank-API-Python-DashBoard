@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from dash import dcc, html, callback
+from dash import dcc, html, callback, no_update
 from dash.dependencies import Output, Input
 import plotly.express as px
 import wbgapi as wb
@@ -161,6 +161,8 @@ def update_data(year, d_economies, y_ind, x_ind, plot_choice,
         x_axis_title = "Year"
         y_axis_title = return_key(ind_dic, x_ind)
         data = extract_data(wb, year, d_economies, x_ind)
+    elif not x_ind and not y_ind or not d_economies:
+        return no_update
 
     fig = px.scatter(
         data,

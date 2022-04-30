@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from dash import dcc, html, callback
+from dash import dcc, html, callback, no_update
 from dash.dependencies import Output, Input
 import plotly.express as px
 import wbgapi as wb
@@ -92,6 +92,8 @@ layout = html.Div([
     Input('y-axis-type-2', 'value'),
 )
 def update_graph(year, d_economies, d_indicator, y_axis_type):
+    if not d_indicator or not d_economies:
+        return no_update
     data = extract_data(wb, year, d_economies, d_indicator)
     y_axis_title = return_key(ind_dic, d_indicator)
     fig = px.scatter(
