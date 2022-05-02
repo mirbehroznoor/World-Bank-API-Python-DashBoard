@@ -21,26 +21,26 @@ The Multi App will through an error or won't work, if two or more than two econo
 
 *** Possibility to Switch
 It is possible to switch from Simple to Multi App or vice versa.
-****** Limitation
+***** Limitation
 If App was switched, the options will reset to default. The default settings can be changed from within scripts.
 
-*** Download Graphs as .png
+*** Download Graphs as /.png/
 The interactive plotly has the option to download the graphs too.
 
 ** Setup
 
-*** Download Github Repository
+*** Download /Github/ Repository
 #+begin_src bash
   git clone https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard
 #+end_src
 
-*** Create a Conda Environment
+*** Create a /Conda/ Environment
 In =environment.yml=, the conda env is named =wbconda=
 #+begin_src shell
   bash build_env.sh
 #+end_src
 
-*** Run Python App
+*** Run /Python/ App
 Simply run the =app.py= script. The App will open in the default browser after few seconds.
 **** Manually
 #+begin_src bash
@@ -70,13 +70,14 @@ Afterwards in Terminal, simply run:
 
 
 *** Default Database
-World Bank API is set to World Development Indicators (WDI) Database (db=2) by the module developers.
+World Bank API is set to World Development Indicators (WDI) Database, id=2, by the module developers. =wb.source.info()= provides the list of available Databases from World Bank API.
 #+begin_src python
   import wbgapi as wb
-  wb.source.info()
+  wb.source.info() #provide the list of DBs
+  wb.db # id number of current Database i.e: (WDI=2)
 #+end_src
 **** Globally
-In case, of different database request, at top of =appSupport.py=
+In case, of a different database request, the =wb.db= value has to be changed at the top of =appSupport.py=
 #+begin_src python
   wb.db = 2
 #+end_src
