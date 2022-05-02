@@ -6,7 +6,7 @@ import wbgapi as wb
 
 from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
 from appPages.appSupport import return_key, extract_data
-from appPages.appSupport import first_var, country_var
+from appPages.appSupport import y_var, country_var
 
 layout = html.Div([
     html.Div([
@@ -24,7 +24,7 @@ layout = html.Div([
             id='d-indicators-2',
             options=[{"label": key, "value": value}
                      for key, value in ind_dic.items()],
-            value=first_var,
+            value=y_var,
             multi=False)
     ],
         style={
@@ -152,7 +152,7 @@ def update_graph(year, d_economies, d_indicator, y_axis_type, plot_choice):
 
     fig.update_layout(height=450,
                       margin={
-                          'l': 20,
+                          'l': 28,
                           'r': 10,
                           'b': 10,
                           't': 28

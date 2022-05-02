@@ -17,12 +17,12 @@ ind_dic = dict(indicators.set_index("value")["id"])
 # db_dic = dict(database.set_index("name")['id'])
 
 if wb.db == 2:
-    first_var = "NY.GDP.PCAP.CD"
-    second_var = "AG.LND.AGRI.ZS"
+    y_var = "NY.GDP.PCAP.CD"
+    x_var = "AG.LND.AGRI.ZS"
     country_var = "KOR"
 else:
-    first_var = indicators["id"][0]
-    second_var = indicators["id"][1]
+    y_var = indicators["id"][0]
+    x_var = indicators["id"][1]
     country_var = "KOR"
 
 

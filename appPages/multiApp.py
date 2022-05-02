@@ -6,7 +6,7 @@ import wbgapi as wb
 
 from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
 from appPages.appSupport import return_key, extract_data
-from appPages.appSupport import first_var, second_var
+from appPages.appSupport import y_var, x_var
 
 layout = html.Div([
     html.Div([
@@ -15,7 +15,7 @@ layout = html.Div([
             options=[
                 {"label": key,
                  "value": value} for key, value in ind_dic.items()],
-            value=first_var,
+            value=y_var,
             multi=False),
         dcc.RadioItems(
             id="y-axis-type-7",
@@ -23,7 +23,7 @@ layout = html.Div([
             value="Linear",
         ),
     ], style={'width': '50%',
-              'float': 'right',
+              'float': 'left',
               'display': 'inline-block',
               'font-size': "70%"
               }),
@@ -34,7 +34,7 @@ layout = html.Div([
                 {"label": key,
                  "value": value} for key, value in ind_dic.items()
             ],
-            value=second_var,
+            value=x_var,
             multi=False),
         dcc.RadioItems(
             id="x-axis-type-7",
@@ -46,7 +46,7 @@ layout = html.Div([
             },
         ),
     ], style={'width': '49%',
-              'float': 'left',
+              'float': 'right',
               'display': 'inline-block',
               'font-size': "70%"
               }),
@@ -160,8 +160,9 @@ def update_data(year, d_economies, y_ind, x_ind, plot_choice,
         x_axis = "Year"
         y_axis = d_economies
         x_axis_title = "Year"
-        y_axis_title = return_key(ind_dic, x_ind)
-        data = extract_data(wb, year, d_economies, x_ind)
+        y_ind = x_ind
+        y_axis_title = return_key(ind_dic, y_ind)
+        data = extract_data(wb, year, d_economies, y_ind)
     elif (y_ind and x_ind) and (economies == 1):
         x_axis = x_ind
         x_axis_title = return_key(ind_dic, x_ind)
@@ -202,7 +203,7 @@ def update_data(year, d_economies, y_ind, x_ind, plot_choice,
 
     fig.update_layout(height=500,
                       margin={
-                          "l": 20,
+                          "l": 28,
                           "r": 10,
                           "b": 10,
                           "t": 28
