@@ -13,40 +13,44 @@ It is one variable App where user can only change y-axis variable while x-axis i
 *Note: Either select one economy with multiple indicators or one indicator with multiple economies.*
 In Multi App, the User can choose two variables, x-axis and y-axis indicators. The user can look for multi-variable trends for a country, otherwise multi and simple Apps are almost the same.
 ***** Limitation
-The Multi App will through an error or won't work, if two or more than two economies and both indicators are selected simultaneously. The problem occurs due Plotly which does not support Pandas multi-index Data frame.
+The Multi App will through an error or won't work, if two or more than two economies and both indicators are selected simultaneously. The problem occurs due to Plotly which does not support Pandas' multi-index Data frame.
 
 [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
 
-** Possibility to Switch
+[[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp-2.png]]
+
+*** Possibility to Switch
 It is possible to switch from Simple to Multi App or vice versa.
-***** Limitation
+****** Limitation
 If App was switched, the options will reset to default. The default settings can be changed from within scripts.
 
-** Download Graphs as .png
+*** Download Graphs as .png
 The interactive plotly has the option to download the graphs too.
 
-** Download Github Repository
+** Setup
+
+*** Download Github Repository
 #+begin_src bash
   git clone https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard
 #+end_src
 
-** Create a Conda Environment
+*** Create a Conda Environment
 In =environment.yml=, the conda env is named =wbconda=
 #+begin_src shell
   bash build_env.sh
 #+end_src
 
-** Run Python App
+*** Run Python App
 Simply run the =app.py= script. The App will open in the default browser after few seconds.
-*** Manually
+**** Manually
 #+begin_src bash
   cd ~/path/to/World-Bank-API-Python-DashBoard
   conda activate wbconda
   python app.py
 #+end_src
 
-*** Automate
-**** Write Bash Alias function
+**** Automate
+***** Write Bash Alias function
 Find or create =.bash_aliases= in folder =$HOME= Directory. Insert the function snippet:
 #+begin_src bash
   wbapp() {
@@ -65,13 +69,13 @@ Afterwards in Terminal, simply run:
 #+end_src
 
 
-** Default Database
+*** Default Database
 World Bank API is set to World Development Indicators (WDI) Database (db=2) by the module developers.
 #+begin_src python
   import wbgapi as wb
   wb.source.info()
 #+end_src
-*** Globally
+**** Globally
 In case, of different database request, at top of =appSupport.py=
 #+begin_src python
   wb.db = 2
