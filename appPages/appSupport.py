@@ -3,8 +3,9 @@ import wbgapi as wb
 
 # wb.db = 1
 
-indicators = pd.DataFrame(wb.series.info().items)
-economies = pd.DataFrame(wb.economy.info().items)
+# database = pd.DataFrame(wb.source.info().items)
+indicators = pd.DataFrame(wb.series.info(db=None).items)
+economies = pd.DataFrame(wb.economy.info(db=None).items)
 
 years = pd.DataFrame(wb.time.info().items)
 years["value"] = years["value"].astype("int")
@@ -13,8 +14,6 @@ max_year = years["value"].max()
 
 econ_dic = dict(economies.set_index("value")['id'])
 ind_dic = dict(indicators.set_index("value")["id"])
-
-# database = pd.DataFrame(wb.source.info().items)
 # db_dic = dict(database.set_index("name")['id'])
 
 if wb.db == 2:
@@ -38,7 +37,7 @@ def extract_data(wb, year, d_economies, d_indicator):
     data = (
         wb.data.DataFrame(d_indicator, d_economies,
                           numericTimeKeys=True,
-                          labels=True
+                          labels=True,
                           )
         .iloc[:, 3:]
         .transpose()

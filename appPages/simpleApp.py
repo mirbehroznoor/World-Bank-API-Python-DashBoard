@@ -10,7 +10,7 @@ from appPages.appSupport import first_var, country_var
 
 layout = html.Div([
     html.Div([
-        dcc.Link('Go to: Multi DashBoard',
+        dcc.Link('Goto: multiApp',
                   href='/multiApp'),
     ],
         style={
@@ -48,40 +48,69 @@ layout = html.Div([
             'font-size': '85%'
     }
     ),
-    html.Br(),
     html.Div([
+        dcc.RadioItems(
+            id="plot-choice-2",
+            options=["None", "OLS"],
+            value="None",
+            inline=True,
+            labelStyle={
+                "width": "15%",
+                "marginTop": "0px",
+                "display": "inline-block",
+                "float": "right",
+                "font-size": "80%",
+            },
+        ),
         dcc.RadioItems(
             id="y-axis-type-2",
             options=["Linear", "Log"],
             value="Linear",
+            inline=True,
             labelStyle={
-               "display": "inline-block",
+                "width": "15%",
+                "marginTop": "0px",
+                "float": "left",
+                "display": "inline-block",
+                "font-size": "80%",
             },
         ),
-    ], style={'width': '15%', 'float': 'right', 'display': 'inline-block'}),
+    ]),
     html.Div([
         dcc.RangeSlider(
             id="year-slider-2",
             min=min_year,
             max=max_year,
             step=1,
-            tooltip={"placement": "right", "always_visible": True},
+            tooltip={
+                "placement": "right",
+                "always_visible": True},
             marks=None,
             dots=False,
             # marks={year: str(year)[2:4] for year in years["value"]},
             # value=years["value"].max(),
-            value=[min_year, max_year]),
-    ],  style={
-        'width': '80%',
-        'display': 'inline-block',
-        'padding': '5px 0px 0px 0px',
-        'font-size': '50%'
+            value=[min_year, max_year],
+        ),
+    ],
+        style={
+        "width": "90%",
+        'float': 'left',
+        "display": "inline-block",
+        "marginTop": "8px",
+        "font-size": "50%"
     }
     ),
     html.Div([
         dcc.Graph(id='data-graph-2'),
-    ]),
-])
+    ],
+        style={
+        "width": "99%",
+        "display": "inline-block",
+        "marginTop": "0px",
+        "font-size": "50%"
+    }
+    ),
+]),
 
 
 @ callback(
@@ -90,31 +119,46 @@ layout = html.Div([
     Input('d-economies-2', 'value'),
     Input('d-indicators-2', 'value'),
     Input('y-axis-type-2', 'value'),
+    Input('plot-choice-2', 'value'),
 )
-def update_graph(year, d_economies, d_indicator, y_axis_type):
+def update_graph(year, d_economies, d_indicator, y_axis_type, plot_choice):
+
     if not d_indicator or not d_economies:
         return no_update
+
     data = extract_data(wb, year, d_economies, d_indicator)
     y_axis_title = return_key(ind_dic, d_indicator)
+
     fig = px.scatter(
         data,
         x="Year",
         y=d_economies,
+        labels={"Year": "Year",
+                d_indicator: y_axis_title,
+                # d_economies: return_key(econ_dic, d_economies),
+                },
+        trendline=("ols" if plot_choice == "OLS" else None),
     )
+
     fig.update_layout(transition_duration=500)
-    fig.update_traces(mode='lines+markers')
+
+    if plot_choice != "OLS":
+        fig.update_traces(mode='lines+markers')
     fig.update_xaxes(showgrid=False)
+
     fig.update_yaxes(
         title=f'{y_axis_title} :: {d_indicator}',
         type='linear' if y_axis_type == 'Linear' else 'log')
-    fig.update_layout(height=530,
+
+    fig.update_layout(height=450,
                       margin={
                           'l': 20,
                           'r': 10,
                           'b': 10,
-                          't': 10
+                          't': 28
                       }
                       )
+
     fig.update_layout(legend=dict(
         title_text="",
         orientation="h",
@@ -123,4 +167,5 @@ def update_graph(year, d_economies, d_indicator, y_axis_type):
         xanchor="right",
         x=0.50
     ))
+
     return fig

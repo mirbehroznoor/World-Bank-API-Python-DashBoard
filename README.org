@@ -22,6 +22,9 @@ It is possible to switch from Simple to Multi App or vice versa.
 ***** Limitation
 If App was switched, the options will reset to default. The default settings can be changed from within scripts.
 
+** Download Graphs as .png
+The interactive plotly has the option to download the graphs too.
+
 ** Download Github Repository
 #+begin_src bash
   git clone https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard

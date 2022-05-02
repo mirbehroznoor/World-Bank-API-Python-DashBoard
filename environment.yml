@@ -9,3 +9,4 @@ dependencies:
   - pandas==1.4.2
   - pip
   - black
+  - statsmodel==0.13.2

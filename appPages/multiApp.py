@@ -6,7 +6,7 @@ import wbgapi as wb
 
 from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
 from appPages.appSupport import return_key, extract_data
-from appPages.appSupport import first_var, second_var, country_var
+from appPages.appSupport import first_var, second_var
 
 layout = html.Div([
     html.Div([
@@ -56,43 +56,27 @@ layout = html.Div([
             options=[
                 {"label": key, "value": value}
                 for key, value in econ_dic.items()],
-            value=country_var,
+            value=[],
             clearable=False,
             multi=True)
     ],
         style={
-        "width": "90%",
+        "width": "89%",
         "display": "inline-block",
         "padding": "5px 0px 0px 0px",
         "font-size": "85%"}
     ),
     html.Div([
-        dcc.Link('Go to: Simple DashBoard',
+        dcc.Link('Goto: simpleApp',
                  href='/simpleApp'),
     ],            style={
-        'width': '8%',
+        'width': '10%',
         'float': 'right',
         "padding": "5px 0px 0px 0px",
         "display": "inline-block",
-        "font-size": "70%"
+        "font-size": "80%"
     }
     ),
-    html.Br(),
-    html.Div([
-        dcc.RadioItems(
-            value="Scatter",
-            id="plot-choice-7",
-            options=['Scatter', 'Line'],
-            # labelStyle={
-            # "display": "inline-block",
-            # "marginTop": "0px",
-            # },
-        ),
-    ], style={
-        'width': '17%',
-        'float': 'right',
-        'display': 'inline-block'
-    }),
     html.Div([
         dcc.RangeSlider(
             id="year-slider-7",
@@ -107,24 +91,41 @@ layout = html.Div([
             value=[min_year, max_year])
     ],
         style={
-        "width": "70%",
+        "width": "58%",
         'float': 'left',
         "display": "inline-block",
-        # "padding": "2px 0px 0px 0px",
+        "marginTop": "8px",
         "font-size": "50%"
     }
     ),
-    html.Br(),
+    html.Div([
+        dcc.RadioItems(
+            value="OLS",
+            id="plot-choice-7",
+            options=['Scatter', 'Line', "OLS"],
+            inline=True,
+        ),
+    ], style={
+        'width': '30%',
+        'float': 'right',
+        "marginTop": "8px",
+        'display': 'inline-block',
+        "font-size": "80%"
+    }),
     html.Div([
         dcc.Graph(id="data-graph-7"),
-    ]),
+    ],
+        style={
+        "width": "99%",
+        "display": "inline-block",
+        "marginTop": "0px",
+        "font-size": "50%"
+    }
+    ),
     html.H6(
         [
             html.Span("NOTE: ", style={"color": "red"}),
-            html.Span('''It is possible to select 2 or more Economies or Indicators,
-                          but not both options simultaneously.
-                Due to a problem with Multi-index DataFrame(Pandas) and Plotly.
-                In case of missing data, try changing the yearly input'''),
+            html.Span('''Due to a problem of Multi-index DataFrame(Pandas) and Plotly, the simultaneous selection of Economies > 1 and Indicators > 1, results in no-response from App.'''),
         ]
     ),
 ])
@@ -142,49 +143,72 @@ layout = html.Div([
 )
 def update_data(year, d_economies, y_ind, x_ind, plot_choice,
                 y_axis_type, x_axis_type):
-    if not x_ind and y_ind:
+
+    economies = len(d_economies)
+
+    if not x_ind and not y_ind or not d_economies:
+        return no_update
+    elif x_ind and y_ind and economies > 1:
+        return no_update
+    elif not x_ind and y_ind:
         x_axis = "Year"
         x_axis_title = "Year"
         y_axis = d_economies
         y_axis_title = return_key(ind_dic, y_ind)
         data = extract_data(wb, year, d_economies, y_ind)
-    elif y_ind and x_ind:
-        x_axis = x_ind
-        x_axis_title = return_key(ind_dic, x_ind)
-        y_axis = y_ind
-        y_axis_title = return_key(ind_dic, y_ind)
-        indicators = [y_ind, x_ind]
-        data = extract_data(wb, year, d_economies, indicators)
     elif x_ind and not y_ind:
         x_axis = "Year"
         y_axis = d_economies
         x_axis_title = "Year"
         y_axis_title = return_key(ind_dic, x_ind)
         data = extract_data(wb, year, d_economies, x_ind)
-    elif not x_ind and not y_ind or not d_economies:
-        return no_update
+    elif (y_ind and x_ind) and (economies == 1):
+        x_axis = x_ind
+        x_axis_title = return_key(ind_dic, x_ind)
+        y_axis = y_ind
+        y_axis_title = return_key(ind_dic, y_ind)
+        indicators = [y_ind, x_ind]
+        data = extract_data(wb, year, d_economies, indicators)
 
     fig = px.scatter(
         data,
         x=x_axis,
-        y=y_axis
+        y=y_axis,
+        labels={x_ind: x_axis_title,
+                y_ind: y_axis_title,
+                # d_economies: return_key(econ_dic, d_economies),
+                },
+        trendline=("ols" if plot_choice == "OLS" else None),
+        text=("Year" if x_ind and y_ind else None),
     )
+
     fig.update_layout(transition_duration=500)
-    fig.update_traces(mode="markers" if plot_choice ==
-                      "Scatter" else "lines+markers")
+
+    if plot_choice != "OLS":
+        fig.update_traces(mode="markers" if plot_choice ==
+                          "Scatter" else "lines+markers")
+    else:
+        fig.update_traces(textposition='top center')
+
     fig.update_xaxes(
-        title=("Year" if x_axis == "Year" else f'{x_axis_title} :: {x_ind}'),
+        title=("Year" if x_axis ==
+               "Year" else f'{x_axis_title} :: {x_ind}'),
         showgrid=False,
         type="linear" if x_axis_type == "Linear" else 'log')
+
     fig.update_yaxes(
         title=f"{y_axis_title} :: {y_ind}",
         type="linear" if y_axis_type == "Linear" else 'log')
-    fig.update_layout(height=500, margin={
-        "l": 20,
-        "r": 10,
-        "b": 10,
-        "t": 10
-    })
+
+    fig.update_layout(height=500,
+                      margin={
+                          "l": 20,
+                          "r": 10,
+                          "b": 10,
+                          "t": 28
+                      }
+                      )
+
     fig.update_layout(
         legend=dict(
             title_text="", orientation="h",
@@ -192,4 +216,5 @@ def update_data(year, d_economies, y_ind, x_ind, plot_choice,
             xanchor="right", x=0.50
         )
     )
+
     return fig
