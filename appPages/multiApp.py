@@ -52,7 +52,7 @@ layout = html.Div([
               }),
     html.Div([
         dcc.Dropdown(
-            id="d-economies-7",
+            id="economies-7",
             options=[
                 {"label": key, "value": value}
                 for key, value in econ_dic.items()],
@@ -134,42 +134,42 @@ layout = html.Div([
 @ callback(
     Output("data-graph-7", "figure"),
     Input("year-slider-7", "value"),
-    Input("d-economies-7", "value"),
+    Input("economies-7", "value"),
     Input("y-indicator-7", "value"),
     Input("x-indicator-7", "value"),
     Input("plot-choice-7", "value"),
     Input('y-axis-type-7', 'value'),
     Input('x-axis-type-7', 'value'),
 )
-def update_data(year, d_economies, y_ind, x_ind, plot_choice,
+def update_data(year, economies, y_ind, x_ind, plot_choice,
                 y_axis_type, x_axis_type):
 
-    economies = len(d_economies)
+    econ_len = len(economies)
 
-    if not x_ind and not y_ind or not d_economies:
+    if not x_ind and not y_ind or not economies:
         return no_update
-    elif x_ind and y_ind and economies > 1:
+    elif x_ind and y_ind and econ_len > 1:
         return no_update
     elif not x_ind and y_ind:
         x_axis = "Year"
         x_axis_title = "Year"
-        y_axis = d_economies
+        y_axis = economies
         y_axis_title = return_key(ind_dic, y_ind)
-        data = extract_data(wb, year, d_economies, y_ind)
+        data = extract_data(wb, year, economies, y_ind)
     elif x_ind and not y_ind:
         x_axis = "Year"
-        y_axis = d_economies
+        y_axis = economies
         x_axis_title = "Year"
         y_ind = x_ind
         y_axis_title = return_key(ind_dic, y_ind)
-        data = extract_data(wb, year, d_economies, y_ind)
-    elif (y_ind and x_ind) and (economies == 1):
+        data = extract_data(wb, year, economies, y_ind)
+    elif (y_ind and x_ind) and (econ_len == 1):
         x_axis = x_ind
         x_axis_title = return_key(ind_dic, x_ind)
         y_axis = y_ind
         y_axis_title = return_key(ind_dic, y_ind)
         indicators = [y_ind, x_ind]
-        data = extract_data(wb, year, d_economies, indicators)
+        data = extract_data(wb, year, economies, indicators)
 
     fig = px.scatter(
         data,
@@ -177,7 +177,7 @@ def update_data(year, d_economies, y_ind, x_ind, plot_choice,
         y=y_axis,
         labels={x_ind: x_axis_title,
                 y_ind: y_axis_title,
-                # d_economies: return_key(econ_dic, d_economies),
+                # economies: return_key(econ_dic, economies),
                 },
         trendline=("ols" if plot_choice == "OLS" else None),
         text=("Year" if x_ind and y_ind else None),
@@ -203,7 +203,7 @@ def update_data(year, d_economies, y_ind, x_ind, plot_choice,
 
     fig.update_layout(height=500,
                       margin={
-                          "l": 28,
+                          "l": 20,
                           "r": 10,
                           "b": 10,
                           "t": 28

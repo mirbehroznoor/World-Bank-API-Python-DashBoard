@@ -21,7 +21,7 @@ layout = html.Div([
     ),
     html.Div([
         dcc.Dropdown(
-            id='d-indicators-2',
+            id='y-indicator-2',
             options=[{"label": key, "value": value}
                      for key, value in ind_dic.items()],
             value=y_var,
@@ -34,7 +34,7 @@ layout = html.Div([
     ),
     html.Div([
         dcc.Dropdown(
-            id='d-economies-2',
+            id='economies-2',
             options=[{"label": key, "value": value}
                      for key, value in econ_dic.items()],
             value=country_var,
@@ -116,26 +116,26 @@ layout = html.Div([
 @ callback(
     Output('data-graph-2', 'figure'),
     Input('year-slider-2', 'value'),
-    Input('d-economies-2', 'value'),
-    Input('d-indicators-2', 'value'),
+    Input('economies-2', 'value'),
+    Input('y-indicator-2', 'value'),
     Input('y-axis-type-2', 'value'),
     Input('plot-choice-2', 'value'),
 )
-def update_graph(year, d_economies, d_indicator, y_axis_type, plot_choice):
+def update_graph(year, economies, y_indicator, y_axis_type, plot_choice):
 
-    if not d_indicator or not d_economies:
+    if not y_indicator or not economies:
         return no_update
 
-    data = extract_data(wb, year, d_economies, d_indicator)
-    y_axis_title = return_key(ind_dic, d_indicator)
+    data = extract_data(wb, year, economies, y_indicator)
+    y_axis_title = return_key(ind_dic, y_indicator)
 
     fig = px.scatter(
         data,
         x="Year",
-        y=d_economies,
+        y=economies,
         labels={"Year": "Year",
-                d_indicator: y_axis_title,
-                # d_economies: return_key(econ_dic, d_economies),
+                y_indicator: y_axis_title,
+                # economies: return_key(econ_dic, economies),
                 },
         trendline=("ols" if plot_choice == "OLS" else None),
     )
@@ -147,12 +147,12 @@ def update_graph(year, d_economies, d_indicator, y_axis_type, plot_choice):
     fig.update_xaxes(showgrid=False)
 
     fig.update_yaxes(
-        title=f'{y_axis_title} :: {d_indicator}',
+        title=f'{y_axis_title} :: {y_indicator}',
         type='linear' if y_axis_type == 'Linear' else 'log')
 
     fig.update_layout(height=450,
                       margin={
-                          'l': 28,
+                          'l': 20,
                           'r': 10,
                           'b': 10,
                           't': 28
