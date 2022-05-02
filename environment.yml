@@ -1,12 +1,13 @@
-name: wbconda # Conda Environment
+name: wbconda
 channels:
   - conda-forge
 dependencies:
-  - python
+  - python==3.10
   - dash==2.3.1
   - wbgapi==1.0.7
   - plotly==5.7.0
   - pandas==1.4.2
-  - pip
   - black
-  - statsmodel==0.13.2
+  - pip
+  - pip:
+    - statsmodels==0.13.2
