@@ -10,8 +10,7 @@ It is one variable App where user can only change y-axis variable while x-axis i
 [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/simpleApp.png]]
 
 *** Multi App
-*Note: Either select one economy with multiple indicators or one indicator with multiple economies.*
-In Multi App, the User can choose two variables, x-axis and y-axis indicators. The user can look for multi-variable trends for a country, otherwise multi and simple Apps are almost the same.
+In Multi App, the User can choose two indicators on x-axis and y-axis respectively. The user can look for multi-variable trends for economies.
 
 [[https://raw.githubusercontent.com/mirbehroznoor/World-Bank-API-Python-DashBoard/main/multiApp.png]]
 
@@ -20,7 +19,7 @@ In Multi App, the User can choose two variables, x-axis and y-axis indicators. T
 *** Possibility to Switch
 It is possible to switch from Simple to Multi App or vice versa.
 ***** Limitation
-If App was switched or refreshed, the options will reset to default. The default settings can be changed from within scripts.
+If App was switched or refreshed, the selections will reset to default. The default settings can be changed from within scripts.
 
 *** Download Graphs as .png
 The interactive plotly has the option to download the graphs too.
