@@ -33,7 +33,7 @@ def return_key(dic, val):
     return('Key Not Found')
 
 
-def extract_data(wb, year, d_economies, d_indicator):
+def one_econ_data(wb, year, d_indicator, d_economies):
     data = (
         wb.data.DataFrame(d_indicator, d_economies,
                           numericTimeKeys=True,
@@ -45,5 +45,21 @@ def extract_data(wb, year, d_economies, d_indicator):
     data = data.rename_axis(None, axis=1)
     data = data.reset_index()
     data = data.rename(columns={"index": "Year"})
+    data = data[(data["Year"] >= year[0]) & (data["Year"] <= year[1])]
+    return data
+
+
+def multi_econ_data(wb, year, d_indicator, d_economies):
+    data = (
+        wb.data.DataFrame(d_indicator, d_economies,
+                          numericTimeKeys=True,
+                          labels=True)
+    )
+    data = data.reset_index()
+    data = data.melt(id_vars=data.columns[0:4],
+                     var_name="Year")
+    data = data.pivot(["Country", "Year"],
+                      "series",
+                      "value").reset_index()
     data = data[(data["Year"] >= year[0]) & (data["Year"] <= year[1])]
     return data

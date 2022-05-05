@@ -5,7 +5,7 @@ import plotly.express as px
 import wbgapi as wb
 
 from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
-from appPages.appSupport import return_key, extract_data
+from appPages.appSupport import return_key, one_econ_data
 from appPages.appSupport import y_var, country_var
 
 layout = html.Div([
@@ -37,8 +37,8 @@ layout = html.Div([
             id='economies-2',
             options=[{"label": key, "value": value}
                      for key, value in econ_dic.items()],
-            value=country_var,
-            clearable=False,
+            value=[country_var],
+            clearable=True,
             multi=True)
     ],
         style={
@@ -121,10 +121,12 @@ layout = html.Div([
 )
 def update_graph(year, economies, y_indicator, y_axis_type, plot_choice):
 
+    # econ_len = len(economies)
+
     if not y_indicator or not economies:
         return no_update
 
-    data = extract_data(wb, year, economies, y_indicator)
+    data = one_econ_data(wb, year, y_indicator, economies)
     y_axis_title = return_key(ind_dic, y_indicator)
 
     fig = px.scatter(
@@ -138,11 +140,13 @@ def update_graph(year, economies, y_indicator, y_axis_type, plot_choice):
         trendline=("ols" if plot_choice == "OLS" else None),
     )
 
-    fig.update_layout(transition_duration=500)
+    fig.update_layout(transition_duration=500,
+                      title=(f"{economies}")
+                      )
 
     if plot_choice != "OLS":
         fig.update_traces(mode='lines+markers')
-    fig.update_xaxes(showgrid=False)
+        fig.update_xaxes(showgrid=False)
 
     fig.update_yaxes(
         title=f'{y_axis_title} :: {y_indicator}',
@@ -157,13 +161,14 @@ def update_graph(year, economies, y_indicator, y_axis_type, plot_choice):
                       }
                       )
 
-    fig.update_layout(legend=dict(
-        title_text="",
-        orientation="h",
-        yanchor="top",
-        y=1.02,
-        xanchor="right",
-        x=0.50
-    ))
+    fig.update_layout(
+        legend=dict(
+            title_text="",
+            orientation="h",
+            yanchor="top",
+            y=1.02,
+            xanchor="right",
+            x=0.50
+        ))
 
     return fig

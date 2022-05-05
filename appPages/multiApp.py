@@ -5,8 +5,8 @@ import plotly.express as px
 import wbgapi as wb
 
 from appPages.appSupport import ind_dic, econ_dic, min_year, max_year
-from appPages.appSupport import return_key, extract_data
-from appPages.appSupport import y_var, x_var
+from appPages.appSupport import return_key, one_econ_data, multi_econ_data
+from appPages.appSupport import y_var, x_var, country_var
 
 layout = html.Div([
     html.Div([
@@ -56,8 +56,8 @@ layout = html.Div([
             options=[
                 {"label": key, "value": value}
                 for key, value in econ_dic.items()],
-            value=[],
-            clearable=False,
+            value=[country_var],
+            clearable=True,
             multi=True)
     ],
         style={
@@ -122,12 +122,12 @@ layout = html.Div([
         "font-size": "50%"
     }
     ),
-    html.H6(
-        [
-            html.Span("NOTE: ", style={"color": "red"}),
-            html.Span('''Due to a problem of Multi-index DataFrame(Pandas) and Plotly, the simultaneous selection of Economies > 1 and Indicators > 1, results in no-response from App.'''),
-        ]
-    ),
+    # html.H6(
+    #     [
+    #         html.Span("NOTE: ", style={"color": "red"}),
+    #         html.Span('''Due to a problem of Multi-index DataFrame(Pandas) and Plotly, the simultaneous selection of Economies > 1 and Indicators > 1, results in no-response from App.'''),
+    #     ]
+    # ),
 ])
 
 
@@ -148,33 +148,37 @@ def update_data(year, economies, y_ind, x_ind, plot_choice,
 
     if not x_ind and not y_ind or not economies:
         return no_update
-    elif x_ind and y_ind and econ_len > 1:
+    elif x_ind and y_ind and econ_len < 1:
         return no_update
     elif not x_ind and y_ind:
         x_axis = "Year"
         x_axis_title = "Year"
         y_axis = economies
         y_axis_title = return_key(ind_dic, y_ind)
-        data = extract_data(wb, year, economies, y_ind)
+        data = one_econ_data(wb, year, y_ind, economies)
     elif x_ind and not y_ind:
         x_axis = "Year"
         y_axis = economies
         x_axis_title = "Year"
         y_ind = x_ind
         y_axis_title = return_key(ind_dic, y_ind)
-        data = extract_data(wb, year, economies, y_ind)
-    elif (y_ind and x_ind) and (econ_len == 1):
+        data = one_econ_data(wb, year, y_ind, economies)
+    elif (y_ind and x_ind) and (econ_len >= 1):
         x_axis = x_ind
         x_axis_title = return_key(ind_dic, x_ind)
         y_axis = y_ind
         y_axis_title = return_key(ind_dic, y_ind)
         indicators = [y_ind, x_ind]
-        data = extract_data(wb, year, economies, indicators)
+        if econ_len == 1:
+            data = one_econ_data(wb, year, indicators, economies)
+        else:
+            data = multi_econ_data(wb, year, indicators, economies)
 
     fig = px.scatter(
         data,
         x=x_axis,
         y=y_axis,
+        color=("Country" if econ_len > 1 else None),
         labels={x_ind: x_axis_title,
                 y_ind: y_axis_title,
                 # economies: return_key(econ_dic, economies),
@@ -183,7 +187,9 @@ def update_data(year, economies, y_ind, x_ind, plot_choice,
         text=("Year" if x_ind and y_ind else None),
     )
 
-    fig.update_layout(transition_duration=500)
+    fig.update_layout(transition_duration=500,
+                      title=(f"{economies}")
+                      )
 
     if plot_choice != "OLS":
         fig.update_traces(mode="markers" if plot_choice ==
@@ -212,7 +218,8 @@ def update_data(year, economies, y_ind, x_ind, plot_choice,
 
     fig.update_layout(
         legend=dict(
-            title_text="", orientation="h",
+            title_text="",
+            orientation="h",
             yanchor="top", y=1.02,
             xanchor="right", x=0.50
         )
