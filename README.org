@@ -37,11 +37,11 @@ The interactive plotly has the option to download the graphs too.
 *** Conda Environment
 **** Python Dependencies
 In =environment.yml=, the conda env is named =wbconda=
-#+begin_src shell :exports both :results output :cache yes :eval export
+#+begin_src shell :exports both :results output :cache no :eval yes
   cat environment.yml
 #+end_src
 
-#+RESULTS[d03884412ddf216558310cc97d69b548307fad1c]:
+#+RESULTS:
 #+begin_example
 name: wbconda
 channels:
