@@ -22,7 +22,7 @@ The Multi App will through an error or won't work, if two or more than two econo
 *** Possibility to Switch
 It is possible to switch from Simple to Multi App or vice versa.
 ***** Limitation
-If App was switched, the options will reset to default. The default settings can be changed from within scripts.
+If App was switched or refreshed, the options will reset to default. The default settings can be changed from within scripts.
 
 *** Download Graphs as .png
 The interactive plotly has the option to download the graphs too.
@@ -34,8 +34,26 @@ The interactive plotly has the option to download the graphs too.
   git clone https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard
 #+end_src
 
-*** Create a Conda Environment
+*** Conda Environment
+**** Python Dependencies
 In =environment.yml=, the conda env is named =wbconda=
+#+begin_src
+name: wbconda
+channels:
+  - conda-forge
+dependencies:
+  - python==3.10
+  - dash==2.3.1
+  - wbgapi==1.0.7
+  - plotly==5.7.0
+  - pandas==1.4.2
+  - black
+  - pip
+  - pip:
+    - statsmodels==0.13.2
+#+end_src
+
+**** Create Conda Environment
 #+begin_src shell
   bash build_env.sh
 #+end_src
