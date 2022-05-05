@@ -122,12 +122,6 @@ layout = html.Div([
         "font-size": "50%"
     }
     ),
-    # html.H6(
-    #     [
-    #         html.Span("NOTE: ", style={"color": "red"}),
-    #         html.Span('''Due to a problem of Multi-index DataFrame(Pandas) and Plotly, the simultaneous selection of Economies > 1 and Indicators > 1, results in no-response from App.'''),
-    #     ]
-    # ),
 ])
 
 
@@ -145,6 +139,7 @@ def update_data(year, economies, y_ind, x_ind, plot_choice,
                 y_axis_type, x_axis_type):
 
     econ_len = len(economies)
+    col_cond = "no"
 
     if not x_ind and not y_ind or not economies:
         return no_update
@@ -173,12 +168,13 @@ def update_data(year, economies, y_ind, x_ind, plot_choice,
             data = one_econ_data(wb, year, indicators, economies)
         else:
             data = multi_econ_data(wb, year, indicators, economies)
+            col_cond = "yes"
 
     fig = px.scatter(
         data,
         x=x_axis,
         y=y_axis,
-        color=("Country" if econ_len > 1 else None),
+        color=("Country" if col_cond == "yes" else None),
         labels={x_ind: x_axis_title,
                 y_ind: y_axis_title,
                 # economies: return_key(econ_dic, economies),
