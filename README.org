@@ -41,6 +41,23 @@ In =environment.yml=, the conda env is named =wbconda=
   cat environment.yml
 #+end_src
 
+#+RESULTS:
+#+begin_example
+name: wbconda
+channels:
+  - conda-forge
+dependencies:
+  - python==3.10
+  - dash==2.3.1
+  - wbgapi==1.0.7
+  - plotly==5.7.0
+  - pandas==1.4.2
+  - black
+  - pip
+  - pip:
+    - statsmodels==0.13.2
+#+end_example
+
 **** Create Conda Environment
 #+begin_src shell
   bash build_env.sh
