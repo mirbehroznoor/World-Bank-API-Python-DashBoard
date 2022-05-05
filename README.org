@@ -37,20 +37,8 @@ The interactive plotly has the option to download the graphs too.
 *** Conda Environment
 **** Python Dependencies
 In =environment.yml=, the conda env is named =wbconda=
-#+begin_src
-name: wbconda
-channels:
-  - conda-forge
-dependencies:
-  - python==3.10
-  - dash==2.3.1
-  - wbgapi==1.0.7
-  - plotly==5.7.0
-  - pandas==1.4.2
-  - black
-  - pip
-  - pip:
-    - statsmodels==0.13.2
+#+begin_src shell :exports both :results output :eval export
+  cat environment.yml
 #+end_src
 
 **** Create Conda Environment
