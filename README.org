@@ -37,11 +37,11 @@ The interactive plotly has the option to download the graphs too.
 *** Conda Environment
 **** Python Dependencies
 In =environment.yml=, the conda env is named =wbconda=
-#+begin_src shell :exports both :results output :eval export
+#+begin_src shell :exports both :results output :cache yes :eval export
   cat environment.yml
 #+end_src
 
-#+RESULTS:
+#+RESULTS[d03884412ddf216558310cc97d69b548307fad1c]:
 #+begin_example
 name: wbconda
 channels:
@@ -99,6 +99,7 @@ World Bank API is set to World Development Indicators (WDI) Database, id=2, by t
   wb.source.info() #provide the list of DBs
   wb.db # id number of current Database i.e: (WDI=2)
 #+end_src
+
 **** Globally
 In case, of a different database request, the =wb.db= value has to be changed at the top of =appSupport.py=
 #+begin_src python
