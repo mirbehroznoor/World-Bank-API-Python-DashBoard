@@ -1,3 +1,6 @@
+#+title: Windows 10 Instructions
+#+author: Bohair Baloch
+
 Install minicoda3 Python version 3.9
 (https:///docs.conda.io/en/latest/miniconda.html)
 During Miniconda3 installation tick:
@@ -15,7 +18,6 @@ Open Git Bash
 Add conda.sh Path in Git Bash
 Enter:
 . C:/Users/your-username/miniconda3/etc/profile.d/conda.sh (Type in Git Bash)
-
 
 
 Manually open extracted path in Git Bash:
@@ -56,7 +58,6 @@ Amend your code as below to automatically open localhost in default browser for 
 def open_browser():
 	webbrowser.open_new('http://localhost:8050')
 	#webbrowser.open_new('http://127.0.0.1:8050')This works as well
-
 
 
 For Linux add this in instructions (Because I had to find this on my own):

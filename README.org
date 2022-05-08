@@ -25,20 +25,21 @@ If App was switched or refreshed, the selections will reset to default. The defa
 *** Download Graphs as .png
 The interactive plotly has the option to download the graphs too.
 
-** Download & Install Conda for GNU/Linux or Windows 10
-*** [[https:///docs.conda.io/en/latest/miniconda.html][Install: Miniconda for GNU/Linux or Windows]]
+** Download & Install Conda
+**** [[https:///docs.conda.io/en/latest/miniconda.html][Install: Miniconda for GNU/Linux or Windows]]
 
-*** GNU/Linux: Too Easy to Install
+**** GNU/Linux: Too Easy to Install
 
-*** Windows 10
-***** During Miniconda3 installation tick:
-*Take note of Miniconda3 installation path.*
+**** Windows 10
+_Take note of Miniconda3 installation path._
+
+****** During Miniconda3 installation tick:
 
 1. Add Miniconda3 to my PATH environment variable
 
 2. Register Miniconda3 as my default Python 3.9
 
-*** Windows 7
+**** Windows 7
 The Python interpreters ~<= 3.8~ are compatible.
 
 
@@ -114,7 +115,7 @@ Afterwards in Terminal, simply run:
 #+end_src
 
 
-** Windows 10 [[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/Windows_Instructions.txt][Windows Instructions]]
+** Windows 10 [[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/Windows_Instructions.txt][Instructions.txt]]
 
 **** First Option:
 
@@ -149,11 +150,11 @@ Manually open extracted path in Git Bash:
 ***** Open in Browser
 If the App does not open automatically in your favorite browser.
 Visit App URL:
-#+begin_src org
+#+begin_src html
 localhost:8050
 #+end_src
 *<OR>*
-#+begin_src org
+#+begin_src html
 http://127.0.0.1:8050
 #+end_src
 
@@ -173,14 +174,14 @@ Manually navigate to extracted files path
 #+end_src
 
 **** Second Option:
-_/The following instructions may not be accurate/_
-****** Install PyCharm
-****** Create a Project
-****** Use the =Git Clone= Option from PyCharm [[https://stackoverflow.com/questions/41023928/import-github-repository-to-pycharm][Stackoverflow: Import github Repository to PyCharm]]
-****** Setup Conda Env within PyCharm
+_The following instructions may not be accurate_
+***** Install PyCharm
+***** Create a Project
+***** Use the =Git Clone= Option from PyCharm [[https://stackoverflow.com/questions/41023928/import-github-repository-to-pycharm][Stackoverflow: Import github Repository to PyCharm]]
+***** Setup Conda Env within PyCharm
 + For Conda Env: environment.yml
 + For Pyevn Env: requirements.txt
-****** Run the App.py
+***** Run the App.py
 
 
 ** Default Database
