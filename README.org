@@ -15,9 +15,7 @@ In Multi App, the User can choose two indicators on x-axis and y-axis respective
 
 [[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/multiApp.png]]
 
-https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/multiApp-2.png
-
-
+[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/multiApp-2.png]]
 
 *** Possibility to Switch
 It is possible to switch from Simple to Multi App or vice versa.
@@ -28,8 +26,9 @@ If App was switched or refreshed, the selections will reset to default. The defa
 The interactive plotly has the option to download the graphs too.
 
 ** Download & Install Conda for GNU/Linux or Windows 10
-*** GNU/Linux or Windows 10
-[[https:///docs.conda.io/en/latest/miniconda.html][Install: Miniconda]]
+*** [[https:///docs.conda.io/en/latest/miniconda.html][Install: Miniconda for GNU/Linux or Windows]]
+
+*** GNU/Linux: Too Easy to Install
 
 *** Windows 10
 ***** During Miniconda3 installation tick:
@@ -40,7 +39,7 @@ The interactive plotly has the option to download the graphs too.
 2. Register Miniconda3 as my default Python 3.9
 
 *** Windows 7
-~Python <= 3.8~ are compatible.
+The Python interpreters ~<= 3.8~ are compatible.
 
 
 ** GNU/Linux
@@ -115,8 +114,7 @@ Afterwards in Terminal, simply run:
 #+end_src
 
 
-** Windows 10
-[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/Windows_Instructions.txt][Windows Instructions.txt]]
+** Windows 10 [[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/Windows_Instructions.txt][Windows Instructions]]
 
 **** First Option:
 
@@ -129,30 +127,33 @@ Install git for windows (with default options) [[https://gitforwindows.org/][Ins
 Open Git Bash
 Add conda.sh Path in Git Bash
 #+begin_src shell
-. C:/Users/your-username/miniconda3/etc/profile.d/conda.sh #Type in Git Bash
+  #Type in Git Bash
+  . C:/Users/your-username/miniconda3/etc/profile.d/conda.sh
 #+end_src
 
 ***** Setup Conda Env
 Manually open extracted path in Git Bash:
 #+begin_src shell
-cd ~ /path/to/World-Bank-API-Python-Dashboard
-bash build_env.sh #Creates Conda Environment
+  cd ~ /path/to/World-Bank-API-Python-Dashboard
+  bash build_env.sh #Creates Conda Environment
 #+end_src
 
 ***** Run the App
 #+begin_src shell
-conda activate wbconda #Activates conda Environment
-python app.py #Runs Application
+  #Activates conda Environment
+  conda activate wbconda
+  #Runs Application
+  python app.py
 #+end_src
 
 ***** Open in Browser
-+ if the App does not open automatically in your favorite browser.
+If the App does not open automatically in your favorite browser.
 Visit App URL:
-#+begin_src
+#+begin_src org
 localhost:8050
 #+end_src
 *<OR>*
-#+begin_src
+#+begin_src org
 http://127.0.0.1:8050
 #+end_src
 
@@ -172,11 +173,10 @@ Manually navigate to extracted files path
 #+end_src
 
 **** Second Option:
-*The following instructions may not be accurate*
+_/The following instructions may not be accurate/_
 ****** Install PyCharm
 ****** Create a Project
-****** Use the =Git Clone= Option from PyCharm
-[[https://stackoverflow.com/questions/41023928/import-github-repository-to-pycharm][Stackoverflow: Import github Repository to PyCharm]]
+****** Use the =Git Clone= Option from PyCharm [[https://stackoverflow.com/questions/41023928/import-github-repository-to-pycharm][Stackoverflow: Import github Repository to PyCharm]]
 ****** Setup Conda Env within PyCharm
 + For Conda Env: environment.yml
 + For Pyevn Env: requirements.txt
@@ -207,3 +207,4 @@ In case, of a different database request, the =wb.db= value has to be changed at
 - [[https://plotly.com/python/legend/][Plotly: Legend]]
 - [[https://dash.plotly.com/urls][Plotly: Multi-Page Apps & URLs Support]]
 - [[https://stackoverflow.com/questions/62642418/is-there-a-way-to-prevent-a-callback-from-firing-in-dash][Stackoverflow: Prevent a callback from firing in dash]]
+- [[https://stackoverflow.com/questions/41023928/import-github-repository-to-pycharm][Stackoverflow: Import github Repository to PyCharm]]
