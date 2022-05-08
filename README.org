@@ -39,13 +39,12 @@ In case, of a different database request, the =wb.db= value has to be changed at
   wb.db = 1
 #+end_src
 
-
 ** Download & Install Conda
 **** [[https:///docs.conda.io/en/latest/miniconda.html][Install: Miniconda for GNU/Linux or Windows]]
 
 **** GNU/Linux: Too Easy to Install
 **** Windows 10
-\underline{Take note of Miniconda3 installation path.}
+~Take note of Miniconda3 installation path.~
 ****** During Miniconda3 installation tick:
 
 1. Add Miniconda3 to my PATH environment variable
@@ -187,13 +186,13 @@ Manually navigate to extracted files path
 #+end_src
 
 *** Second Option:
-_The following instructions may not be accurate_
+~The following instructions may not be accurate~
 ***** Install PyCharm
 ***** Create a Project
 ***** Use the =Git Clone= Option from PyCharm [[https://stackoverflow.com/questions/41023928/import-github-repository-to-pycharm][Stackoverflow: Import github Repository to PyCharm]]
 ***** Setup Conda Env within PyCharm
-+ For Conda Env: environment.yml
-+ For Pyevn Env: requirements.txt
++ For Conda Env: =environment.yml=
++ For Pyevn Env: ~requirements.txt~
 ***** Run the App.py
 
 
