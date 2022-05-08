@@ -1,6 +1,6 @@
 #+title: World Bank API Python DashBoard
 #+author: Mir Behroz Noor
-#+options: \n:t
+#+options: \n:t latex:t tex:t
 
 *Since [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both support interactive Plotly. I found it easier to implement in Python. I hope someone else finds this helpful too. The instructions are for GNU/Linux.*
 
@@ -25,14 +25,27 @@ If App was switched or refreshed, the selections will reset to default. The defa
 *** Download Graphs as .png
 The interactive plotly has the option to download the graphs too.
 
+** Default Database
+World Bank API is set to World Development Indicators (WDI) Database, id=2, by the module developers. =wb.source.info()= provides the list of available Databases from World Bank API.
+#+begin_src python
+  import wbgapi as wb
+  wb.source.info() #provide the list of DBs
+  wb.db # id number of current Database i.e: (WDI=2)
+#+end_src
+
+*** Globally
+In case, of a different database request, the =wb.db= value has to be changed at the top of =appSupport.py=
+#+begin_src python
+  wb.db = 1
+#+end_src
+
+
 ** Download & Install Conda
 **** [[https:///docs.conda.io/en/latest/miniconda.html][Install: Miniconda for GNU/Linux or Windows]]
 
 **** GNU/Linux: Too Easy to Install
-
 **** Windows 10
-_Take note of Miniconda3 installation path._
-
+\underline{Take note of Miniconda3 installation path.}
 ****** During Miniconda3 installation tick:
 
 1. Add Miniconda3 to my PATH environment variable
@@ -59,7 +72,7 @@ The Python interpreters ~<= 3.8~ are compatible.
 *** Conda Environment
 
 **** Python Dependencies
-In =environment.yml=, the conda env is named =wbconda=
+In =environment.yml=, the conda environment is named =wbconda=
 #+begin_src shell :exports both :results output :cache no :eval yes
   cat environment.yml
 #+end_src
@@ -117,7 +130,7 @@ Afterwards in Terminal, simply run:
 
 ** Windows 10 [[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/Windows_Instructions.txt][Instructions.txt]]
 
-**** First Option:
+*** First Option:
 
 ***** Git for Windows
 Install git for windows (with default options) [[https://gitforwindows.org/][Install: Git for Windows]]
@@ -173,7 +186,7 @@ Manually navigate to extracted files path
   Python app.py
 #+end_src
 
-**** Second Option:
+*** Second Option:
 _The following instructions may not be accurate_
 ***** Install PyCharm
 ***** Create a Project
@@ -182,21 +195,6 @@ _The following instructions may not be accurate_
 + For Conda Env: environment.yml
 + For Pyevn Env: requirements.txt
 ***** Run the App.py
-
-
-** Default Database
-World Bank API is set to World Development Indicators (WDI) Database, id=2, by the module developers. =wb.source.info()= provides the list of available Databases from World Bank API.
-#+begin_src python
-  import wbgapi as wb
-  wb.source.info() #provide the list of DBs
-  wb.db # id number of current Database i.e: (WDI=2)
-#+end_src
-
-*** Globally
-In case, of a different database request, the =wb.db= value has to be changed at the top of =appSupport.py=
-#+begin_src python
-  wb.db = 1
-#+end_src
 
 
 ** Acknowledgments
