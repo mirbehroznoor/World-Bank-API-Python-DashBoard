@@ -1,0 +1,65 @@
+Install minicoda3 Python version 3.9
+(https:///docs.conda.io/en/latest/miniconda.html)
+During Miniconda3 installation tick:
+1. Add Miniconda3 to my PATH environment variable
+2. Register Miniconda3 as my default Python 3.9
+Note Miniconda3 installation path.
+
+
+Install git for windows (with default options) (https://gitforwindows.org/)
+
+Download World Bank API files
+Extract Files
+
+Open Git Bash
+Add conda.sh Path in Git Bash
+Enter:
+. C:/Users/your-username/miniconda3/etc/profile.d/conda.sh (Type in Git Bash)
+
+
+
+Manually open extracted path in Git Bash:
+cd ~ /path/to/World-Bank-API-Python-Dashboard
+
+Enter in Git Bash:
+bash build_env.sh (Creates Conda Environment)
+conda activate wbconda (Activates conda Environment)
+python app.py (Runs Application)
+
+To visit the localhost on your favorite browser.
+
+Visit:
+localhost:8050
+OR
+http://127.0.0.1:8050
+
+To exit Git Bash server press:
+Ctrl + C
+
+To close Git Bash Enter:
+exit
+
+To Re-run after initial installation (for later use or once Git Bash is closed):
+Open Git Bash
+Manually navigate to extracted files path
+Enter:
+. C:/Users/your-username/miniconda3/etc/profile.d/conda.sh
+conda activate wbconda
+Python app.py
+
+
+Localhost should open in default browser however a popup is shown in Windows stating "You'll need a new app to open this localhost".
+
+Suggestion:
+Amend your code as below to automatically open localhost in default browser for Windows and Linux (Ubuntu):
+
+def open_browser():
+	webbrowser.open_new('http://localhost:8050')
+	#webbrowser.open_new('http://127.0.0.1:8050')This works as well
+
+
+
+For Linux add this in instructions (Because I had to find this on my own):
+Download Miniconda3
+Install Miniconda3 via terminal
+Close and re-open terminal

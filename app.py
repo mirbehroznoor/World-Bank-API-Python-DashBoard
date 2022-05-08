@@ -25,13 +25,14 @@ def display_page(pathname):
     # You could also return a 404 "URL not found" page here
 
 
-port = 8050
+# port = 8050
 
 
 def open_browser():
-    webbrowser.open_new("localhost:{}".format(port))
+    webbrowser.open_new("localhost:8050")
+    # webbrowser.open_new('http://127.0.0.1:8050')This works as well
 
 
 if __name__ == "__main__":
     Timer(1, open_browser).start()
-    app.run_server(debug=True, port=port, use_reloader=False)
+    app.run_server(debug=True, port=8050, use_reloader=False)
