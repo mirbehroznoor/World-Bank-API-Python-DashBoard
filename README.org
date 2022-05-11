@@ -1,5 +1,6 @@
 #+title: World Bank API Python DashBoard
 #+author: Mir Behroz Noor
+#+OPTIONS: |:t toc:t date:nil num:nil ^:{} \n:nil
 
 *Since [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both support interactive Plotly. I found it easier to implement in Python. I hope someone else finds this helpful too.*
 
