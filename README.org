@@ -29,6 +29,10 @@ If App was switched or refreshed, the selections will reset to default. The defa
 *** Download Graphs as .png
 The interactive plotly has the option to download the graphs too.
 
+*** Incredible Search
+[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/search-app-1.png]]
+[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/search-app-2.png]]
+
 ** Default Database
 World Bank API is set to World Development Indicators (WDI) Database, id=2, by the module developers. =wb.source.info()= provides the list of available Databases from World Bank API.
 #+begin_src python
