@@ -2,7 +2,11 @@
 #+author: Mir Behroz Noor
 #+startup: show4levels
 
+*Update: [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has started showing data visualizations for years before 2000*
+
 *Since [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000. This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both support interactive Plotly. I found it easier to implement in Python. I hope someone else finds this helpful too.*
+
+*Limitation: No option to change World Bank API Database from DashBoard/GUI*
 
 ** Dash App Versions
 *** Simple App
