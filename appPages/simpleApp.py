@@ -121,7 +121,7 @@ layout = html.Div([
 )
 def update_graph(year, economies, y_indicator, y_axis_type, plot_choice):
 
-    # econ_len = len(economies)
+    econ_len = len(economies)
 
     if not y_indicator or not economies:
         return no_update
@@ -141,7 +141,8 @@ def update_graph(year, economies, y_indicator, y_axis_type, plot_choice):
     )
 
     fig.update_layout(transition_duration=500,
-                      title=(f"{economies}")
+                      title=(f"{return_key(econ_dic, economies[0])}"
+                             if econ_len == 1 else None)
                       )
 
     if plot_choice != "OLS":
@@ -154,10 +155,10 @@ def update_graph(year, economies, y_indicator, y_axis_type, plot_choice):
 
     fig.update_layout(height=450,
                       margin={
-                          'l': 20,
+                          # 'l': 20,
                           'r': 10,
                           'b': 10,
-                          't': 28
+                          # 't': 28
                       }
                       )
 
@@ -165,10 +166,9 @@ def update_graph(year, economies, y_indicator, y_axis_type, plot_choice):
         legend=dict(
             title_text="",
             orientation="h",
-            yanchor="top",
-            y=1.02,
-            xanchor="right",
-            x=0.50
+            yanchor="bottom",
+            y=1,
+            # xanchor="right", x=0.50
         ))
 
     return fig

@@ -16,12 +16,12 @@ app.layout = html.Div([
 @ callback(Output('page-content', 'children'),
            [Input('url', 'pathname')])
 def display_page(pathname):
-    if pathname == '/simpleApp':
-        return simpleApp.layout
-    elif pathname == '/multiApp':
+    if pathname == '/multiApp':
         return multiApp.layout
-    else:
+    elif pathname == '/simpleApp':
         return simpleApp.layout
+    else:
+        return multiApp.layout
     # You could also return a 404 "URL not found" page here
 
 
