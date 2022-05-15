@@ -204,6 +204,11 @@ Manually navigate to extracted files path
 ***** Run the App.py
 
 
+** Share it with others!
+- Linkedin
+- Twitter
+- Whoever can use it
+
 ** Acknowledgments
 - [[https://towardsdatascience.com/how-to-extract-key-from-python-dictionary-using-value-2b2f8dd2a995][Towardsdatascience: Extract key from python dictionary]]
 - [[https://blog.logrocket.com/data-visualization-interfaces-python-dash/][Logrocket Blog: Data Visualization Interfaces Python Dash]]
