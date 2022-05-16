@@ -8,7 +8,7 @@
 
 *Limitation: No option to change World Bank API Database from DashBoard/GUI*
 
-** Deployed on Heroku [[http://wb-py.herokuapp.com/]]
+*** Deployed on Heroku [[http://wb-py.herokuapp.com/]]
 
 ** Dash App Versions
 *** Simple App
