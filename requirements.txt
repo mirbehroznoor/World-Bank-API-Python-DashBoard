@@ -4,3 +4,4 @@ plotly==5.7.0
 pandas==1.4.2
 black
 statsmodels==0.13.2
+gunicorn

@@ -5,6 +5,8 @@ from appPages import simpleApp, multiApp
 
 app = Dash(__name__, suppress_callback_exceptions=True)
 
+server = app.server
+
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div(id='page-content')

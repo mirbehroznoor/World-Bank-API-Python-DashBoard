@@ -1,5 +1,6 @@
 ## Python
 __pycache__/
+*.~undo-tree~
 
 ## grip-mode files
 README.md
