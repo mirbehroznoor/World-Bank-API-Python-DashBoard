@@ -5,3 +5,4 @@ pandas==1.4.2
 black
 statsmodels==0.13.2
 gunicorn
+dash_bootstrap_components==1.1.0
