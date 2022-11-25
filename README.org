@@ -9,7 +9,7 @@
 *Limitation: No option to change World Bank API Database from DashBoard/GUI*
 
 ** Dash App
-*** Deployed on Heroku [[https://wbviz-py.herokuapp.com/]]
+*** +Deployed on Heroku [[https://wbviz-py.herokuapp.com/]]+
 
 *** Simple App
 It is one variable App where user can only change y-axis variable while x-axis is by set to ~Year~ by default. It accepts only one indicator while it is possible to add as many economies as possible.
