@@ -2,7 +2,7 @@
 #+author: Mir Behroz Noor
 #+startup: show4levels
 
-*This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both support interactive Plotly. I found it easier to implement in Python. I hope someone else finds this helpful too.*
+*The project uses the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]] for visualizations.*
 
 *Limitation: No option to change World Bank API Database from DashBoard/GUI*
 
@@ -229,6 +229,4 @@ Manually navigate to extracted files path
 + [[https://dash.plotly.com/urls][Dash-Plotly: Multi-Page Apps & URLs Support]]
 + [[https://stackoverflow.com/questions/62642418/is-there-a-way-to-prevent-a-callback-from-firing-in-dash][Stackoverflow: Prevent a callback from firing in dash]]
 + [[https://stackoverflow.com/questions/41023928/import-github-repository-to-pycharm][Stackoverflow: Import github Repository to PyCharm]]
-+ [[https://devcenter.heroku.com/articles/heroku-cli][Heroku: Heroku CLI Setup]]
-+ [[https://austinlasseter.medium.com/how-to-deploy-a-simple-plotly-dash-app-to-heroku-622a2216eb73][Medium: How to deploy a simple plotly dash app to heroku]]
-+ [[https://dash.plotly.com/deployment][Dash-Plotly: Deployment]]
++ [[https://raw.githubusercontent.com/plotly/dash-app-stylesheets/master/dash-analytics-report.css][Dash App Stylesheets: Dash Analytics Report]]
