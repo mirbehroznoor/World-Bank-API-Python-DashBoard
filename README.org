@@ -6,6 +6,8 @@
 
 *Limitation: No option to change World Bank API Database from DashBoard/GUI*
 
+*[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/releases][Available Versions]]*
+
 ** Dash App
 
 [[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/wbapp.gif]]
@@ -212,7 +214,6 @@ Manually navigate to extracted files path
 + For Conda Env: =environment.yml=
 + For Pyevn Env: ~requirements.txt~
 ***** Run the App.py
-
 
 ** Share it with others!
 - Linkedin
