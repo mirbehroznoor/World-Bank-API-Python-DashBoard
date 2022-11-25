@@ -1,8 +1,10 @@
 import pandas as pd
 import wbgapi as wb
 
-# wb.db = 1
+from dash_iconify import DashIconify
+from dash import html
 
+# wb.db = 1
 # database = pd.DataFrame(wb.source.info().items)
 indicators = pd.DataFrame(wb.series.info(db=None).items)
 economies = pd.DataFrame(wb.economy.info(db=None).items)
@@ -24,6 +26,45 @@ else:
     y_var = indicators["id"][0]
     x_var = indicators["id"][1]
     country_var = "KOR"
+
+
+def ind_Developmentrelevance(ind):
+    dr = wb.series_metadata.get(ind)
+    for i in dr.metadata.keys():
+        if i == "Developmentrelevance":
+            devRel = dr.metadata["Developmentrelevance"]
+            break
+        else:
+            devRel = "Not Available"
+    return devRel
+
+
+# period = [ld.metadata[i]
+    # for i in ld.metadata.keys() if i == "Periodicity"]
+# longDef = [ld.metadata[i]
+    # for i in ld.metadata.keys() if i == "Longdefinition"]
+
+def ind_periodicity(ind):
+    period = wb.series_metadata.get(ind)
+    for i in period.metadata.keys():
+        if i == "Periodicity":
+            periodicity = period.metadata[i]
+            break
+        else:
+            periodicity = "Not Available"
+    return periodicity
+
+
+def ind_Longdefinition(ind):
+    ld = wb.series_metadata.get(ind)
+    for i in ld.metadata.keys():
+        if i == "Longdefinition":
+            longDef = ld.metadata["Longdefinition"]
+            break
+        else:
+            longDef = "Not Available"
+
+    return longDef
 
 
 def return_key(dic, val):
@@ -63,3 +104,42 @@ def multi_econ_data(wb, year, d_indicator, d_economies):
                       "value").reset_index()
     data = data[(data["Year"] >= year[0]) & (data["Year"] <= year[1])]
     return data
+
+
+app_footer = html.Div([
+    html.Div([
+        html.Ul('Contributors', className="contributors"),
+        # https://stackoverflow.com/questions/67221522/how-to-hyperlink-an-image-in-plotly-dash
+        html.A([DashIconify(
+            icon="ion:logo-github",
+            width=30,
+            color="black",
+            inline=True,
+        ),
+            '@mirbehroznoor'],
+            href='https://github.com/mirbehroznoor',
+            title="GitHub",
+            style={
+                "color": "black",
+        },
+
+        ),
+    ],
+        style={
+        "width": "auto",
+            "float": "right",
+            "marginTop": "0px",
+            'marginRight': '13px',
+            "color": "black",
+    },
+    ),
+],
+    style={
+    "width": "100%",
+    "float": "left",
+    "marginTop": "5%",
+    'marginBottom': '13px',
+    # "background-color": "#ffdab9",
+    "background": "lightsteelblue",
+}
+)

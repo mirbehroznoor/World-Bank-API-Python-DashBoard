@@ -2,26 +2,33 @@
 #+author: Mir Behroz Noor
 #+startup: show4levels
 
-*Update: [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has started showing data visualizations for years before 2000*
-
-+Since [[https://data.worldbank.org/indicator/NY.GDP.MKTP.CD][The World Bank Data]] has stopped visualizing data for years before 2000+. *This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both support interactive Plotly. I found it easier to implement in Python. I hope someone else finds this helpful too.*
+*This project aims at providing the visualizations of the data available from [[https://github.com/tgherzog/wbgapi][World Bank API Python]]. There is World Bank package for R too. Either in R and Python, both support interactive Plotly. I found it easier to implement in Python. I hope someone else finds this helpful too.*
 
 *Limitation: No option to change World Bank API Database from DashBoard/GUI*
 
 ** Dash App
-*** +Deployed on Heroku [[https://wbviz-py.herokuapp.com/]]+
 
-*** Simple App
-It is one variable App where user can only change y-axis variable while x-axis is by set to ~Year~ by default. It accepts only one indicator while it is possible to add as many economies as possible.
-
-[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/simpleApp.png]]
+[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/wbapp.gif]]
 
 *** Multi App
 In Multi App, the User can choose two indicators on x-axis and y-axis respectively. The user can look for multi-variable trends for economies.
 
-[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/multiApp.png]]
++ Trendline
+  + OLS
+  + Lowess
++ Plots
+  + Line
+  + Scatter
++ Add/Remove: Markers and Years
++ Switch Axis Variables Button
++ Indicator Descriptions (Info Button)
++ Linear/Log Scales
 
-[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/multiApp-2.png]]
+*** Simple App
+It is one variable App where user can only change y-axis variable while x-axis is by set to ~Year~ by default. It accepts only one indicator while it is possible to add as many economies as possible.
+
++ OLS Trendline
++ Linear/Log Scale
 
 *** Possibility to Switch
 It is possible to switch from Simple to Multi App or vice versa.
@@ -33,7 +40,6 @@ The interactive plotly has the option to download the graphs too.
 
 *** Incredible Search
 [[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/search-app-1.png]]
-[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/search-app-2.png]]
 
 ** Default Database
 World Bank API is set to World Development Indicators (WDI) Database, id=2, by the module developers. =wb.source.info()= provides the list of available Databases from World Bank API.
@@ -101,6 +107,8 @@ dependencies:
   - pip
   - pip:
     - statsmodels==0.13.2
+    - dash_bootstrap_components==1.1.0
+    - dash-iconify==0.1.2
 #+end_example
 
 **** Create Conda Environment

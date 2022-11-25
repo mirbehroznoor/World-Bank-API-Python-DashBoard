@@ -1,11 +1,21 @@
 from dash import Dash, dcc, html, Input, Output, callback
+import dash_bootstrap_components as dbc
+
 import webbrowser
 from threading import Timer
+
 from appPages import simpleApp, multiApp
 
-app = Dash(__name__, suppress_callback_exceptions=True)
 
-server = app.server
+# external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+# app = Dash(__name__, suppress_callback_exceptions=True)
+# MATERIA
+# LUMEN
+# SANDSTONE
+
+app = Dash(__name__, suppress_callback_exceptions=True,
+           external_stylesheets=[dbc.themes.MATERIA]
+           )
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -32,7 +42,6 @@ def display_page(pathname):
 
 def open_browser():
     webbrowser.open_new("localhost:8050")
-    # webbrowser.open_new('http://127.0.0.1:8050')This works as well
 
 
 if __name__ == "__main__":

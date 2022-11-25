@@ -11,3 +11,5 @@ dependencies:
   - pip
   - pip:
     - statsmodels==0.13.2
+    - dash_bootstrap_components==1.1.0
+    - dash-iconify==0.1.2
