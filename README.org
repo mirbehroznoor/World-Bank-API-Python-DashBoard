@@ -10,9 +10,7 @@
 
 ** Dash App
 
-[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/wbapp.mp4]]
-
-https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/wbapp.gif
+[[https://github.com/mirbehroznoor/World-Bank-API-Python-DashBoard/blob/main/wbapp.gif]]
 
 *** Multi App
 In Multi App, the User can choose two indicators on x-axis and y-axis respectively. The user can look for multi-variable trends for economies.
